@@ -7,7 +7,6 @@ from utils.encdata import *
 from utils.pharmacy import *
 import streamlit as st
 from streamlit_option_menu import option_menu
-from streamlit_login import *
 from streamlit_login import __login__
 from streamlit_login.utils import register_new_usr
 import re
