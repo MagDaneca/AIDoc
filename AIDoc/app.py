@@ -60,7 +60,7 @@ conn = create_connection()
 cursor = conn.cursor()
 init_session_state()
 
-diabetes_model = pickle.load(open(rb'C:\Users\MSI\Desktop\AIDoc\Trained models\diabetes_model_medassist.sav', 'rb'))
+diabetes_model = pickle.load(open(rb'AIDoc/Trained models/diabetes_model_medassist.sav', 'rb'))
 
 __login__obj = __login__(auth_token = "dk_test_7KR409DTD7M8R6N7R803TVBDK9V7", 
                          
