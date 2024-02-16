@@ -11,7 +11,7 @@ from streamlit_login import __login__
 from streamlit_login.utils import register_new_usr
 import re
 from io import BytesIO
-from streamlit_calendar import calendar
+from streamlit_calendar1 import calendar
 from datetime import timedelta, datetime
 from datetime import *
 import folium
