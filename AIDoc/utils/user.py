@@ -1,4 +1,5 @@
 import sqlite3
+import subprocess
 
 def save_user_info(conn, first_name, last_name, email, phone, username, id_role, id_city):
     try:
