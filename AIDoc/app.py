@@ -245,10 +245,9 @@ if LOGGED_IN == True:
                 output = 1
             output = 1
             col1, col2, col3  = st.columns([1,1,1])
-            col4,col5,col6 = st.columns([1,1,1])
-            col7,col8 = st.columns([1.6,0.1])
-            col9, col10, col11 = st.columns([1,1,1])
-            col12,col13 = st.columns([1.6,0.1])
+            col4,col5 = st.columns([1.6,0.1])
+            col6,col7,col8 = st.columns([1,1,1])
+            col9,col10 = st.columns([1.6,0.1])
             with col2:
                     if st.button("Резулат за диабет"):
                         if Glucose is None:
@@ -270,9 +269,9 @@ if LOGGED_IN == True:
                     elif(output == '2'):
                         with col12:
                             st.markdown("<p style='text-align: center; color: #F75D59;background-color:white;border-radius:25px;border: 2px solid #F75D59   ;'>Пациентът не страда от диабет</p>", unsafe_allow_html=True)
-            with col5:
+            with col7:
                 st.markdown("<h1 style=' color: black;'> " "Диабет</h1>", unsafe_allow_html=True)
-                with col7:
+                with col9:
                     st.markdown("<b style='text-align: justify;color:black;text-decoration-style: solid;'>Диабетът е сериозно заболяване, което може да оказва значително влияние върху живота на хората. Неконтролираният диабет може да има дългосрочни последици за здравето, но разбирането на типовете диабет и начините за управление може да направи голяма разлика.</b>", unsafe_allow_html=True)
                     st.markdown("<h2 style=' color: black;text-align: center;'> " "Тип 1 Диабет</h1>", unsafe_allow_html=True)
                     st.markdown("<b style='text-align: justify;color:black;text-decoration-style: solid;'>Тип 1 диабет обикновено се развива при по-млади хора и е свързан с недостатъчно произвеждане на инсулин от тялото. Инсулинът е ключов хормон, който регулира нивата на захар в кръвта. Хората с този тип диабет обикновено се нуждаят от външен източник на инсулин, като инсулинови инжекции или помпи, за да контролират нивата на глюкоза.</b>", unsafe_allow_html=True)
