@@ -1,5 +1,8 @@
 import sqlite3
 
 def create_connection(db_path):
-    conn = sqlite3.connect(db_path)
-    return conn
+    try:
+        conn = sqlite3.connect(db_path)
+        return conn
+    except Exception as e:
+        print(f"Error updating database: {e}")
