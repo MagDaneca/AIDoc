@@ -21,6 +21,9 @@ def save_user_info(conn, first_name, last_name, email, phone, username, id_role,
                            ''',(first_name,last_name,email,phone,username,id_role,id_city))
         
         conn.commit()
+        subprocess.run(["git", "add", "AIDoc/aidoc.db"])
+        subprocess.run(["git", "commit", "-m", "Update SQLite database with new data"])
+        subprocess.run(["git", "push", "origin", "main"])
     except sqlite3.Error as e:
         print(f"error 46 {e}")
 
@@ -158,6 +161,9 @@ def save_user_profile(conn, username, age, sex, pregnancies, height, weight):
                 ''', (user_id, age, sex, pregnancies, height, weight))
 
             conn.commit()
+            subprocess.run(["git", "add", "AIDoc/aidoc.db"])
+            subprocess.run(["git", "commit", "-m", "Update SQLite database with new data"])
+            subprocess.run(["git", "push", "origin", "main"])
         else:
             print(f"User profile not saved. User with username {username} not found.")
     except sqlite3.Error as e:
@@ -172,6 +178,9 @@ def save_user_role(conn, username, role):
                        WHERE username = ?
                        ''', (role,username))
         conn.commit()
+        subprocess.run(["git", "add", "AIDoc/aidoc.db"])
+        subprocess.run(["git", "commit", "-m", "Update SQLite database with new data"])
+        subprocess.run(["git", "push", "origin", "main"])
     except sqlite3.Error as e:
         print("Error 172")
 
