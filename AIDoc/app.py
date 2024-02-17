@@ -293,14 +293,14 @@ if LOGGED_IN == True:
             age, TotalBilirubin, DirectBilirubin, AlkalinePhosphatase, AlanineAminotransferase, AspartateAminotransferase, TotalProtein, Albumin, AlbuminAndGlobulinRatio = get_data_liver(conn, username)
 
             col1, col2, col3  = st.columns([0.65,1,0.5])
-            col4,col5 = st.columns([1.6,0.1])
+            col4,col5 = st.columns([1.4,0.1])
             col6,col7,col8 = st.columns([0.2,1,0.2])
             col9,col10 = st.columns([1.6,0.1])
 
             with col2:
                 if st.button("Резулат за болест на черния дроб"):
                     if TotalBilirubin is None:
-                        with col2:
+                        with col4:
                             #st.error("Моля прикачете вашите изследвания в PDF формат в секция 'Профил' ")
                             st.markdown("<p style='text-align: center; color: #F75D59;background-color:white;border-radius:25px;border: 2px solid #F75D59   ;'>Моля прикачете вашите изследвания в PDF формат в секция Профил</p>", unsafe_allow_html=True)
                     else:
@@ -310,10 +310,10 @@ if LOGGED_IN == True:
                         liver_prediction = liver_model.predict(input_data_reshaped)
                         print(liver_prediction)
                         if (liver_prediction[0] == 1):
-                            with col2:
+                            with col4:
                                 st.markdown("<p style='text-align: center; color: #F75D59;background-color:white;border-radius:25px;border: 2px solid #F75D59   ;'>Пациентът е възможно да има заболяване на черния дроб</p>", unsafe_allow_html=True)
                         else:
-                            with col2:
+                            with col4:
                                 st.markdown("<p style='text-align: center; color: #F75D59;background-color:white;border-radius:25px;border: 2px solid #F75D59   ;'>Пациентът няма заболяване на черния дроб</p>", unsafe_allow_html=True)
             with col7:
                 st.markdown("<h1 style='text-align: center; color: black;'> " "Заболяване на черния дроб</h1>", unsafe_allow_html=True)
