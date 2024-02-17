@@ -71,6 +71,9 @@ def add_info_doc(conn,username,specialty):
                 ''', (user_id, specialty))
 
             conn.commit()
+            subprocess.run(["git", "add", "AIDoc/aidoc.db"])
+            subprocess.run(["git", "commit", "-m", "Update SQLite database with new data"])
+            subprocess.run(["git", "push", "origin", "main"])
         else:
             print(f"User profile not saved. User with username {username} not found.")
     except sqlite3.Error as e:
@@ -96,6 +99,9 @@ def save_doc_sched(conn, username, day, start_time, end_time):
 
 
         conn.commit()
+        subprocess.run(["git", "add", "AIDoc/aidoc.db"])
+        subprocess.run(["git", "commit", "-m", "Update SQLite database with new data"])
+        subprocess.run(["git", "push", "origin", "main"])
     except sqlite3.Error as e:
         print("Error saving doctor schedule:", e)
 
@@ -146,57 +152,14 @@ def modify_schedule_for_doctor(conn, doctor_id):
         conn.commit()
 
         print("Schedule modified successfully.")
-    except Exception as e:
-        # Handle any exceptions
-        print(f"Error modifying schedule: {e}")
-
-def modify_week_for_doctor(conn, doctor_id):
-    try:
-        # Disable foreign key checks
-        conn.execute("PRAGMA foreign_keys = OFF;")
-
-        # Delete rows from 'schedule' where id_doctor = doctor_id
-        conn.execute("DELETE FROM week_hours WHERE id_doctor = ?;", (doctor_id,))
-
-        # Enable foreign key checks
-        conn.execute("PRAGMA foreign_keys = ON;")
-
-        # Commit the changes
         conn.commit()
-
-        print("Schedule modified successfully.")
+        subprocess.run(["git", "add", "AIDoc/aidoc.db"])
+        subprocess.run(["git", "commit", "-m", "Update SQLite database with new data"])
+        subprocess.run(["git", "push", "origin", "main"])
     except Exception as e:
         # Handle any exceptions
         print(f"Error modifying schedule: {e}")
 
-def check_if_exists(conn,username):
-    doc_id = get_user_id_by_username(conn,username)
-    cursor = conn.cursor()
-    cursor.execute('SELECT * FROM week_hours WHERE id_doctor = ?',(doc_id,))
-    exist = cursor.fetchone()
-
-    if exist:
-        return True
-    else:
-        return False
-    
-def week_hours(conn,username,day,start_time,end_time):
-    cursor = conn.cursor()
-    
-    doc_id = get_user_id_by_username(conn,username)
-
-    start_time_str = start_time.strftime('%H:%M:%S')
-    end_time_str = end_time.strftime('%H:%M:%S')
-    cursor.execute('SELECT * FROM week_hours WHERE id_doctor = ? AND day = ?', (doc_id, day))
-    existing = cursor.fetchone()
-
-    if existing:
-        existing_day = existing[3]  # Replace 'day' with the actual column name
-        cursor.execute('UPDATE week_hours SET start = ?, end = ? WHERE id_doctor = ? AND day = ?', (start_time_str, end_time_str, doc_id, existing_day))
-    else:
-        cursor.execute('INSERT INTO week_hours (id_doctor, day, start, end) VALUES (?, ?, ?, ?)', (doc_id, day, start_time_str, end_time_str))
-
-    conn.commit()
 
 def get_doctors_by_city_and_specialty(conn, city, specialty):
     cursor = conn.cursor()
@@ -256,6 +219,9 @@ def save_appointment(conn, doctor_name, username, selected_date, selected_hour):
 
     # Commit the transaction
     conn.commit()
+    subprocess.run(["git", "add", "AIDoc/aidoc.db"])
+    subprocess.run(["git", "commit", "-m", "Update SQLite database with new data"])
+    subprocess.run(["git", "push", "origin", "main"])
 
 def get_doctor_names(conn,username):
     try:
