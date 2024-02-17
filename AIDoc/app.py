@@ -245,27 +245,11 @@ if LOGGED_IN == True:
                 output = 1
             output = 1
             col1, col2, col3  = st.columns([1,1,1])
-            col4,col5,col6 = st.columns([0.3,0.8,0.4])
+            col4,col5,col6 = st.columns([1,1,1])
             col7,col8 = st.columns([1.6,0.1])
             col9, col10, col11 = st.columns([1,1,1])
             col12,col13 = st.columns([1.6,0.1])
-            with col1:
-                pass
-            with col3:
-                pass
             with col2:
-                st.markdown("<h1 style=' color: black;'> " "Диабет</h1>", unsafe_allow_html=True)
-                with col7:
-                    st.markdown("<b style='text-align: justify;color:black;text-decoration-style: solid;'>Диабетът е сериозно заболяване, което може да оказва значително влияние върху живота на хората. Неконтролираният диабет може да има дългосрочни последици за здравето, но разбирането на типовете диабет и начините за управление може да направи голяма разлика.</b>", unsafe_allow_html=True)
-                    st.markdown("<h2 style=' color: black;text-align: center;'> " "Тип 1 Диабет</h1>", unsafe_allow_html=True)
-                    st.markdown("<b style='text-align: justify;color:black;text-decoration-style: solid;'>Тип 1 диабет обикновено се развива при по-млади хора и е свързан с недостатъчно произвеждане на инсулин от тялото. Инсулинът е ключов хормон, който регулира нивата на захар в кръвта. Хората с този тип диабет обикновено се нуждаят от външен източник на инсулин, като инсулинови инжекции или помпи, за да контролират нивата на глюкоза.</b>", unsafe_allow_html=True)
-                    st.markdown("<h2 style=' color: black;text-align: center;'> " "Тип 2 Диабет</h1>", unsafe_allow_html=True)
-                    st.markdown("<b style='text-align: justify;color:black;text-decoration-style: solid;'>Тип 2 диабет е по-често срещан и обикновено се развива по-късно в живота. Тук тялото не използва инсулина ефективно или не произвежда достатъчно. Здравословен начин на живот, като здравословно хранене и редовна физическа активност, често помагат за контролиране на този вид диабет. В случаи, когато тези мерки не са достатъчни, могат да се използват и лекарства.</b>", unsafe_allow_html=True)
-                    st.markdown("<h2 style=' color: black;text-align: center;'> " "Управление и Превенция</h1>", unsafe_allow_html=True)
-                    st.markdown("<b style='text-align: justify;color:black;text-decoration-style: solid;'>Редовното следене на нивата на глюкоза в кръвта е от изключително значение за контролирането на диабета. Това включва редовни изследвания и следене на хранителните навици, физическата активност и приема на лекарства.</b>", unsafe_allow_html=True)
-                    st.markdown("<b style='text-align: justify;color:black;text-decoration-style: solid;'>Важно е и предпазването от развитието на диабет. Здравословният начин на живот, включително балансирано хранене, поддържане на оптимално тегло и редовна физическа активност, може да намали риска от появата на диабет тип 2.</b>", unsafe_allow_html=True)
-                    st.markdown("<b style='text-align: justify;color:black;text-decoration-style: solid;'>Диабетът е хронично заболяване, но разбирането му и вземането на мерки за контрол могат да помогнат за подобряване на качеството на живот и предотвратяване на дългосрочни здравни проблеми.</b>", unsafe_allow_html=True)
-                with col2:
                     if st.button("Резулат за диабет"):
                         if Glucose is None:
                             with col12:
@@ -279,13 +263,25 @@ if LOGGED_IN == True:
                                 diab_diagnosis = 'Пациентът не страда от диабет'
                                 output = '2'  
                 
-                with col12:
+            with col12:
                     if(output == '0'):
                         with col12:
                             st.markdown("<p style='text-align: center; color: #F75D59;background-color:white;border-radius:25px;border: 2px solid #F75D59   ;'>Пациентът е възможно да страда от диабет</p>", unsafe_allow_html=True)
                     elif(output == '2'):
                         with col12:
                             st.markdown("<p style='text-align: center; color: #F75D59;background-color:white;border-radius:25px;border: 2px solid #F75D59   ;'>Пациентът не страда от диабет</p>", unsafe_allow_html=True)
+            with col5:
+                st.markdown("<h1 style=' color: black;'> " "Диабет</h1>", unsafe_allow_html=True)
+                with col7:
+                    st.markdown("<b style='text-align: justify;color:black;text-decoration-style: solid;'>Диабетът е сериозно заболяване, което може да оказва значително влияние върху живота на хората. Неконтролираният диабет може да има дългосрочни последици за здравето, но разбирането на типовете диабет и начините за управление може да направи голяма разлика.</b>", unsafe_allow_html=True)
+                    st.markdown("<h2 style=' color: black;text-align: center;'> " "Тип 1 Диабет</h1>", unsafe_allow_html=True)
+                    st.markdown("<b style='text-align: justify;color:black;text-decoration-style: solid;'>Тип 1 диабет обикновено се развива при по-млади хора и е свързан с недостатъчно произвеждане на инсулин от тялото. Инсулинът е ключов хормон, който регулира нивата на захар в кръвта. Хората с този тип диабет обикновено се нуждаят от външен източник на инсулин, като инсулинови инжекции или помпи, за да контролират нивата на глюкоза.</b>", unsafe_allow_html=True)
+                    st.markdown("<h2 style=' color: black;text-align: center;'> " "Тип 2 Диабет</h1>", unsafe_allow_html=True)
+                    st.markdown("<b style='text-align: justify;color:black;text-decoration-style: solid;'>Тип 2 диабет е по-често срещан и обикновено се развива по-късно в живота. Тук тялото не използва инсулина ефективно или не произвежда достатъчно. Здравословен начин на живот, като здравословно хранене и редовна физическа активност, често помагат за контролиране на този вид диабет. В случаи, когато тези мерки не са достатъчни, могат да се използват и лекарства.</b>", unsafe_allow_html=True)
+                    st.markdown("<h2 style=' color: black;text-align: center;'> " "Управление и Превенция</h1>", unsafe_allow_html=True)
+                    st.markdown("<b style='text-align: justify;color:black;text-decoration-style: solid;'>Редовното следене на нивата на глюкоза в кръвта е от изключително значение за контролирането на диабета. Това включва редовни изследвания и следене на хранителните навици, физическата активност и приема на лекарства.</b>", unsafe_allow_html=True)
+                    st.markdown("<b style='text-align: justify;color:black;text-decoration-style: solid;'>Важно е и предпазването от развитието на диабет. Здравословният начин на живот, включително балансирано хранене, поддържане на оптимално тегло и редовна физическа активност, може да намали риска от появата на диабет тип 2.</b>", unsafe_allow_html=True)
+                    st.markdown("<b style='text-align: justify;color:black;text-decoration-style: solid;'>Диабетът е хронично заболяване, но разбирането му и вземането на мерки за контрол могат да помогнат за подобряване на качеството на живот и предотвратяване на дългосрочни здравни проблеми.</b>", unsafe_allow_html=True)
         if selected == "Намери лекарство":
             st.title('Намери своето лекарство')
             medication_name = st.text_input('Въведете името на лекарството')
