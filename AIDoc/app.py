@@ -293,7 +293,7 @@ if LOGGED_IN == True:
             age, TotalBilirubin, DirectBilirubin, AlkalinePhosphatase, AlanineAminotransferase, AspartateAminotransferase, TotalProtein, Albumin, AlbuminAndGlobulinRatio = get_data_liver(conn, username)
 
             col1, col2, col3  = st.columns([0.65,1,0.5])
-            col4,col5 = st.columns([1.4,0.1])
+            col4,col5 = st.columns([1.8,0.1])
             col6,col7,col8 = st.columns([0.2,1,0.2])
             col9,col10 = st.columns([1.6,0.1])
 
