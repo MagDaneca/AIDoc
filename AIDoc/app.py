@@ -262,7 +262,7 @@ if LOGGED_IN == True:
                                 diab_diagnosis = 'Пациентът не страда от диабет'
                                 output = '2'  
                 
-            with col12:
+            with col4:
                     if(output == '0'):
                         with col12:
                             st.markdown("<p style='text-align: center; color: #F75D59;background-color:white;border-radius:25px;border: 2px solid #F75D59   ;'>Пациентът е възможно да страда от диабет</p>", unsafe_allow_html=True)
