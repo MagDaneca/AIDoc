@@ -121,10 +121,10 @@ class __login__:
         Renders the lottie animation.
         """
         with st.form("medlice"):
-            st.write("Заявете вашия медицински профил")
-            name = st.text_input("Име", placeholder="Вашето име")
-            specialty = st.text_input("Специалност", placeholder="Вашите специалности")
-            city = st.text_input("Град", placeholder="града в който практикувате")
+            st.write("Заявете медицински профил")
+            name = st.text_input("Име", placeholder="Име")
+            specialty = st.text_input("Специалност", placeholder="Практикувани специалности")
+            city = st.text_input("Град", placeholder="Града в който практикувате")
             email = st.text_input("Имейл", placeholder="Имейл за връзка")
             st.markdown("###")
             send_info = st.form_submit_button("Изпращане")
@@ -139,7 +139,7 @@ class __login__:
                 elif email == False:
                     st.error("Моля въведете имейл адрес за връзка")
                 else:
-                    st.success("Успешно изпратихте вашата информация, очаквайте имейл от екипа на MedAssist!")
+                    st.success("Успешно изпратихте вашата информация, очаквайте имейл от екипа на AIDoc!")
                     send_doc_email(self.auth_token,email,name,specialty,city)
             
 
@@ -149,17 +149,17 @@ class __login__:
         Creates the sign-up widget and stores the user info in a secure way in the _secret_auth_.json file.
         """
         with st.form("Sign Up Form"):
-            name_sign_up = st.text_input("Име *", placeholder = 'Моля въведете вашето име')
+            name_sign_up = st.text_input("Име *", placeholder = 'Име')
             valid_name_check = check_valid_name(name_sign_up)
 
-            email_sign_up = st.text_input("Имейл *", placeholder = 'Моля, въведете своя имейл')
+            email_sign_up = st.text_input("Имейл *", placeholder = 'Имейл адрес')
             valid_email_check = check_valid_email(email_sign_up)
             unique_email_check = check_unique_email(email_sign_up)
             
             username_sign_up = st.text_input("Потребителско име *", placeholder = 'Въведете потребителско име')
             unique_username_check = check_unique_usr(username_sign_up)
 
-            password_sign_up = st.text_input("Парола *", placeholder = 'Създайте силна парола', type = 'password')
+            password_sign_up = st.text_input("Парола *", placeholder = 'Парола', type = 'password')
 
             st.markdown("###")
             sign_up_submit_button = st.form_submit_button(label = 'Регистриране')
