@@ -1,5 +1,5 @@
 import sqlite3
 
-def create_connection():
-    conn = sqlite3.connect(r'AIDoc/aidoc.db')
+def create_connection(db_path):
+    conn = sqlite3.connect(db_path)
     return conn
