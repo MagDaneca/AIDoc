@@ -62,8 +62,8 @@ cursor = conn.cursor()
 init_session_state()
 
 diabetes_model = pickle.load(open(rb'AIDoc/Trained models/diabetes_model_medassist.sav', 'rb'))
-liver_disease_model = pickle.load(open(rb'AIDoc\Trained models\liver_disease_model.sav', 'rb'))
-heart_disease_model = pickle.load(open(rb'AIDoc\Trained models\heart_disease_model.sav','rb'))
+liver_disease_model = pickle.load(open(rb'AIDoc/Trained models/liver_disease_model.sav', 'rb'))
+heart_disease_model = pickle.load(open(rb'AIDoc/Trained models/heart_disease_model.sav','rb'))
 
 __login__obj = __login__(auth_token = "dk_test_7KR409DTD7M8R6N7R803TVBDK9V7", 
                          
