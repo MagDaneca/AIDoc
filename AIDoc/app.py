@@ -250,12 +250,11 @@ if LOGGED_IN == True:
         if selected == 'Заболяване на сърцето':
             age, sex, cp, BloodPressure, chol, fbs, restecg, thalach, exang, oldpeak, slope, ca, thal = get_data_heart(conn, username)
 
-            col1, col2, col3  = st.columns([0.8,1,1])
-            col4,col5,col6 = st.columns([0.3,0.8,0.4])
-            col7,col8 = st.columns([1.6,0.1])
-            col9, col10, col11 = st.columns([1,1,1])
-            col12,col13 = st.columns([1.6,0.1])
-            with col10:
+            col1, col2, col3  = st.columns([1,1,1])
+            col4,col5 = st.columns([1.6,0.1])
+            col6,col7,col8 = st.columns([1,1,1])
+            col9,col10 = st.columns([1.6,0.1])
+            with col2:
                     if st.button("Резулат за заболяване на сърцето"):
                         if cp is None:
                             with col12:
@@ -269,15 +268,9 @@ if LOGGED_IN == True:
                             else:
                                 with col12:
                                     st.markdown("<p style='text-align: center; color: #F75D59;background-color:white;border-radius:25px;border: 2px solid #F75D59   ;'>Пациентът няма заболяване на сърцето</p>", unsafe_allow_html=True)
-
-
-            with col1:
-                pass
-            with col3:
-                pass
-            with col2:
+            with col7:
                 st.markdown("<h1 style=' color: black;'> " "Заболяване на сърцето</h1>", unsafe_allow_html=True)
-                with col7:
+            with col9:
                     st.markdown("<h2 style=' color: black;text-align: center;'> " "Исхемична болест на сърцето (ИБС)</h1>", unsafe_allow_html=True)
                     st.markdown("<b style='text-align: justify;color:black;text-decoration-style: solid;'>- Дефиниция: Стеснени или блокирани сърдечни артерии.</b>", unsafe_allow_html=True)
                     st.markdown("<b style='text-align: justify;color:black;text-decoration-style: solid;'>- Симптоми: Болка в гърдите, умора, задух.</b>", unsafe_allow_html=True)
@@ -299,13 +292,12 @@ if LOGGED_IN == True:
         if selected == 'Заболяване на черния дроб':
             age, TotalBilirubin, DirectBilirubin, AlkalinePhosphatase, AlanineAminotransferase, AspartateAminotransferase, TotalProtein, Albumin, AlbuminAndGlobulinRatio = get_data_liver(conn, username)
 
-            col1, col2, col3  = st.columns([0.5,1,0.5])
-            col4,col5,col6 = st.columns([0.3,0.8,0.4])
-            col7,col8 = st.columns([1.6,0.1])
-            col9, col10, col11 = st.columns([1,1,1])
-            col12,col13 = st.columns([1.6,0.1])
+            col1, col2, col3  = st.columns([1,1,1])
+            col4,col5 = st.columns([1.6,0.1])
+            col6,col7,col8 = st.columns([0.5,1,0.5])
+            col9,col10 = st.columns([1.6,0.1])
 
-            with col10:
+            with col2:
                 if st.button("Резулат за болест на черния дроб"):
                     if TotalBilirubin is None:
                         with col12:
@@ -323,14 +315,9 @@ if LOGGED_IN == True:
                         else:
                             with col12:
                                 st.markdown("<p style='text-align: center; color: #F75D59;background-color:white;border-radius:25px;border: 2px solid #F75D59   ;'>Пациентът няма заболяване на черния дроб</p>", unsafe_allow_html=True)
-
-            with col1:
-                pass
-            with col3:
-                pass
-            with col2:
+            with col7:
                 st.markdown("<h1 style='text-align: center; color: black;'> " "Заболяване на черния дроб</h1>", unsafe_allow_html=True)
-                with col7:
+            with col9:
                     st.markdown("<b style='text-align: justify;color:black;text-decoration-style: solid;'>Заболяването на черния дроб е сериозно състояние, което може да засегне функциите на черния дроб и да предизвика различни проблеми със здравето. Разбирането на факторите и начините за превенция и управление може да бъде от съществено значение.</b>", unsafe_allow_html=True)
                     st.markdown("<b style='text-align: justify;color:black;text-decoration-style: solid;'>След провеждане на необходимите изследвания и анализ, може да се направи заключение относно състоянието на черния дроб. Важно е да се отбележи, че самоцензурното лечение и контрол на рисковите фактори също играят важна роля в поддържането на здравето на черния дроб и предотвратяването на заболявания.</b>", unsafe_allow_html=True)
 
