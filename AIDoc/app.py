@@ -19,9 +19,10 @@ import folium
 from streamlit_folium import folium_static
 import numpy as np
 
+db_path = st.secrets["db_secret"]
 
 def get_working_hours(username,day):
-    conn = create_connection()
+    conn = create_connection(db_path)
     cursor = conn.cursor()
     doc_id = get_user_id_by_username(conn,username)
     st.write(f"**Работно време за {day}:**")
@@ -56,8 +57,6 @@ hide_streamlit_style = """
             </style>
             """
 st.markdown(hide_streamlit_style, unsafe_allow_html=True)
-
-db_path = st.secrets["db_secret"]
 
 conn = create_connection(db_path)
 cursor = conn.cursor()
