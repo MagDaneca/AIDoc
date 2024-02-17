@@ -265,7 +265,7 @@ if LOGGED_IN == True:
                     st.markdown("<b style='text-align: justify;color:black;text-decoration-style: solid;'>Редовното следене на нивата на глюкоза в кръвта е от изключително значение за контролирането на диабета. Това включва редовни изследвания и следене на хранителните навици, физическата активност и приема на лекарства.</b>", unsafe_allow_html=True)
                     st.markdown("<b style='text-align: justify;color:black;text-decoration-style: solid;'>Важно е и предпазването от развитието на диабет. Здравословният начин на живот, включително балансирано хранене, поддържане на оптимално тегло и редовна физическа активност, може да намали риска от появата на диабет тип 2.</b>", unsafe_allow_html=True)
                     st.markdown("<b style='text-align: justify;color:black;text-decoration-style: solid;'>Диабетът е хронично заболяване, но разбирането му и вземането на мерки за контрол могат да помогнат за подобряване на качеството на живот и предотвратяване на дългосрочни здравни проблеми.</b>", unsafe_allow_html=True)
-                with col10:
+                with col2:
                     if st.button("Резулат за диабет"):
                         if Glucose is None:
                             with col12:
