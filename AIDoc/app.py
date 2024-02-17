@@ -340,8 +340,8 @@ if LOGGED_IN == True:
             col1,col2,col3 = st.columns([4,0.5,4])
             with col1:
                 filtered = False
-                selected_city = st.selectbox('Изберете град', ['Sofia','Burgas','Varna'])
-                selected_specialty = st.selectbox('Изберете специалност', ['Cardiology', 'Dermatology',])
+                selected_city = st.selectbox('Изберете град', ['София','Бургас','Варна','Пловдид'])
+                selected_specialty = st.selectbox('Изберете специалност', ['Кардиолог', 'Дерматолог','Ортопед'])
                 filtered_doctors = get_doctors_by_city_and_specialty(conn, selected_city, selected_specialty)
                 if filtered_doctors:
                     for doctors in filtered_doctors:
@@ -349,7 +349,7 @@ if LOGGED_IN == True:
                 else:
                     st.write('Не бяха намерени доктори от тази специалност в града')
                 if filtered:
-                    formatted_names = ['Dr. ' + first_name_doc + ' ' + last_name_doc for first_name_doc, last_name_doc in filtered_doctors]
+                    formatted_names = ['Д-р ' + first_name_doc + ' ' + last_name_doc for first_name_doc, last_name_doc in filtered_doctors]
                     selected_doctor = st.selectbox('Изберете лекар:', formatted_names)
                     
                     if selected_doctor:
@@ -400,7 +400,7 @@ if LOGGED_IN == True:
 
                     first_name, last_name, tele = doctor_details
                     
-                    title = f"Dr. {first_name} {last_name}, тел. номер:{tele}"
+                    title = f"Д-р {first_name} {last_name}, тел. номер:{tele}"
                     
 
 
@@ -447,20 +447,22 @@ if LOGGED_IN == True:
             st.header("Нов доктор")
             doctor_first_name = st.text_input("Име")
             doctor_sec_name = st.text_input("Фамилия")
-            doc_city = st.selectbox("Град",('Sofia','Varna','Burgas'))
-            if doc_city == 'Sofia':
+            doc_city = st.selectbox("Град",('София','Варна','Бургас'))
+            if doc_city == 'София':
                 doc_city = 1
-            elif doc_city == "Burgas":
+            elif doc_city == "Бургас":
                 doc_city = 3
-            elif doc_city == "Varna":
+            elif doc_city == "Варна":
                 doc_city = 2
+            elif doc_city == "Пловдив":
+                doc_city = 4
             doc_tel = st.text_input("тел.номер")
-            doctor_specialty = st.selectbox("Специалност",('Cardiology','Psychologist','Oncology'))
-            if doctor_specialty == 'Cardiology':
+            doctor_specialty = st.selectbox("Специалност",('Кардиолог','Ортопед','Дерматолог'))
+            if doctor_specialty == 'Кардиолог':
                 id_spec = 1
-            elif doctor_specialty =='Psychologist':
+            elif doctor_specialty =='Ортопед':
                 id_spec = 2
-            elif doctor_specialty == 'Oncology':
+            elif doctor_specialty == 'Дерматолог':
                 id_spec = 3
             doctor_email = st.text_input("Имейл")
             if st.button("Add Doctor"):
@@ -474,7 +476,7 @@ if LOGGED_IN == True:
                     #set_default_schedule_av_hours(doc_username)
                     st.success("Успешно!")
                 else:
-                    st.warning("Please fill in all the information.")
+                    st.warning("Моля, въведете всички полета.")
     if role_user == 3:
         with st.sidebar:
         
