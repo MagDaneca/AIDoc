@@ -251,7 +251,7 @@ if LOGGED_IN == True:
             with col2:
                     if st.button("Резулат за диабет"):
                         if Glucose is None:
-                            with col12:
+                            with col4:
                                 st.markdown("<p style='text-align: center; color: #F75D59;background-color:white;border-radius:25px;border: 2px solid #F75D59   ;'>Моля прикачете вашите изследвания в PDF формат в секция Профил</p>", unsafe_allow_html=True)
                         else:
                             diab_prediction = diabetes_model.predict([[pregnancies, Glucose, BloodPressure, Insulin, bmi, age]])
@@ -264,10 +264,10 @@ if LOGGED_IN == True:
                 
             with col4:
                     if(output == '0'):
-                        with col12:
+                        with col4:
                             st.markdown("<p style='text-align: center; color: #F75D59;background-color:white;border-radius:25px;border: 2px solid #F75D59   ;'>Пациентът е възможно да страда от диабет</p>", unsafe_allow_html=True)
                     elif(output == '2'):
-                        with col12:
+                        with col4:
                             st.markdown("<p style='text-align: center; color: #F75D59;background-color:white;border-radius:25px;border: 2px solid #F75D59   ;'>Пациентът не страда от диабет</p>", unsafe_allow_html=True)
             with col7:
                 st.markdown("<h1 style=' color: black;'> " "Диабет</h1>", unsafe_allow_html=True)
