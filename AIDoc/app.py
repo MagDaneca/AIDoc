@@ -250,9 +250,9 @@ if LOGGED_IN == True:
         if selected == 'Заболяване на сърцето':
             age, sex, cp, BloodPressure, chol, fbs, restecg, thalach, exang, oldpeak, slope, ca, thal = get_data_heart(conn, username)
 
-            col1, col2, col3  = st.columns([1,1,1])
+            col1, col2, col3  = st.columns([0.5,1,0.5])
             col4,col5 = st.columns([1.6,0.1])
-            col6,col7,col8 = st.columns([1,1,1])
+            col6,col7,col8 = st.columns([0.2,1,0.2])
             col9,col10 = st.columns([1.6,0.1])
             with col2:
                     if st.button("Резулат за заболяване на сърцето"):
@@ -292,7 +292,7 @@ if LOGGED_IN == True:
         if selected == 'Заболяване на черния дроб':
             age, TotalBilirubin, DirectBilirubin, AlkalinePhosphatase, AlanineAminotransferase, AspartateAminotransferase, TotalProtein, Albumin, AlbuminAndGlobulinRatio = get_data_liver(conn, username)
 
-            col1, col2, col3  = st.columns([1,1,1])
+            col1, col2, col3  = st.columns([0.5,1,0.5])
             col4,col5 = st.columns([1.6,0.1])
             col6,col7,col8 = st.columns([0.5,1,0.5])
             col9,col10 = st.columns([1.6,0.1])
