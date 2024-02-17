@@ -5,6 +5,7 @@ from utils.doc import *
 from utils.user import *
 from utils.encdata import *
 from utils.pharmacy import *
+from utils.diseases import *
 import streamlit as st
 from streamlit_option_menu import option_menu
 from streamlit_login import __login__
@@ -60,6 +61,8 @@ cursor = conn.cursor()
 init_session_state()
 
 diabetes_model = pickle.load(open(rb'AIDoc/Trained models/diabetes_model_medassist.sav', 'rb'))
+liver_model = pickle.load(open('AIDoc\Trained models\liver_disease_model.sav', 'rb'))
+heart_disease_model = pickle.load(open('AIDoc\Trained models\heart_disease_model.sav','rb'))
 
 __login__obj = __login__(auth_token = "dk_test_7KR409DTD7M8R6N7R803TVBDK9V7", 
                          
@@ -73,12 +76,8 @@ __login__obj = __login__(auth_token = "dk_test_7KR409DTD7M8R6N7R803TVBDK9V7",
 LOGGED_IN = __login__obj.build_login_ui()
 
 extracted_text = ""
-if 'Glucose' not in st.session_state:
-    st.session_state.Glucose = None
-if 'BloodPressure' not in st.session_state:
-    st.session_state.BloodPressure = None
-if 'Insulin' not in st.session_state:
-    st.session_state.Insulin = None
+session()
+
 if LOGGED_IN == True:
     username = __login__obj.cookies['__streamlit_login_signup_ui_username__']
     role_user = get_user_role(conn,username)
@@ -126,8 +125,10 @@ if LOGGED_IN == True:
                                 selected = option_menu( '',
                                                         [   
                                                             'Диабет',
+                                                            'Заболяване на сърцето',
+                                                            'Заболяване на черния дроб'
                                                         ],
-                                                        icons=['capsule-pill'],
+                                                        icons=['capsule-pill','capsule-pill','capsule-pill'],
                                                         default_index=0)
         if(selected == 'Профил'):
             col6,col7,col8 = st.columns([0.5,1,0.5])
@@ -209,41 +210,11 @@ if LOGGED_IN == True:
                             if data_created:
                                 st.rerun()
             medical_tests = st.file_uploader("Качете вашите изследвания в PDF формат тук:", type=['pdf'])
-            if medical_tests is not None:
-                extracted_text = extract_text_from_pdf(BytesIO(medical_tests.read()))
-            if findWholeWord('Глюкоза')(extracted_text) is not None:
-                glucose_match = re.search(r'Глюкоза: (\d+)', extracted_text)
-                Glucose = int(glucose_match.group(1)) if glucose_match else None
-                st.session_state.Glucose = Glucose
-            if findWholeWord('Кръвно')(extracted_text) is not None:
-                pressure_match = re.search(r'Кръвно налягане: (\d+)', extracted_text)
-                BloodPressure = int(pressure_match.group(1)) if pressure_match else None
-                st.session_state.BloodPressure = BloodPressure
-            if findWholeWord('Инсулин')(extracted_text) is not None:
-                insulin_match = re.search(r'Инсулин: (\d+)', extracted_text)
-                Insulin = int(insulin_match.group(1)) if insulin_match else None
-                st.session_state.Insulin = Insulin
+            find(medical_tests)
+            
         if selected == 'Диабет':
-            age = get_age_of_user(conn,username)
-            height = get_height_of_user(conn,username)
-            sex = get_sex_of_user(conn, username)
-            kilo = get_kilo_of_user(conn, username)
-            pregnancies = get_pregnancies_of_user(conn, username)
-            result = None
-            if height != None:
-                bmi = kilo/(height*height)
-            if st.session_state.Glucose is not None:
-                Glucose = st.session_state.Glucose
-                output = 1
-            else:
-                Glucose = None
-            if st.session_state.BloodPressure is not None:
-                BloodPressure = st.session_state.BloodPressure
-                output = 1
-            if st.session_state.Insulin is not None:
-                Insulin = st.session_state.Insulin
-                output = 1
-            output = 1
+            age, bmi, pregnancies, Glucose, BloodPressure, Insulin = get_data_diabetes(conn, username)
+            
             col1, col2, col3  = st.columns([1,1,1])
             col4,col5 = st.columns([1.6,0.1])
             col6,col7,col8 = st.columns([1,1,1])
@@ -251,17 +222,17 @@ if LOGGED_IN == True:
             with col2:
                     if st.button("Резулат за диабет"):
                         if Glucose is None:
-                            with col4:
+                            with col12:
                                 st.markdown("<p style='text-align: center; color: #F75D59;background-color:white;border-radius:25px;border: 2px solid #F75D59   ;'>Моля прикачете вашите изследвания в PDF формат в секция Профил</p>", unsafe_allow_html=True)
                         else:
                             diab_prediction = diabetes_model.predict([[pregnancies, Glucose, BloodPressure, Insulin, bmi, age]])
                             if (diab_prediction[0] == 1):
-                                diab_diagnosis = 'Пациентът е възможно да страда от диабет'
-                                output = '0'   
+                                with col12:
+                                    st.markdown("<p style='text-align: center; color: #F75D59;background-color:white;border-radius:25px;border: 2px solid #F75D59   ;'>Пациентът е възможно да страда от диабет</p>", unsafe_allow_html=True)
                             else:
-                                diab_diagnosis = 'Пациентът не страда от диабет'
-                                output = '2'  
-                
+                                with col12:
+                                    st.markdown("<p style='text-align: center; color: #F75D59;background-color:white;border-radius:25px;border: 2px solid #F75D59   ;'>Пациентът не страда от диабет</p>", unsafe_allow_html=True)
+                                    
             with col4:
                     if(output == '0'):
                         with col4:
@@ -281,6 +252,95 @@ if LOGGED_IN == True:
                     st.markdown("<b style='text-align: justify;color:black;text-decoration-style: solid;'>Редовното следене на нивата на глюкоза в кръвта е от изключително значение за контролирането на диабета. Това включва редовни изследвания и следене на хранителните навици, физическата активност и приема на лекарства.</b>", unsafe_allow_html=True)
                     st.markdown("<b style='text-align: justify;color:black;text-decoration-style: solid;'>Важно е и предпазването от развитието на диабет. Здравословният начин на живот, включително балансирано хранене, поддържане на оптимално тегло и редовна физическа активност, може да намали риска от появата на диабет тип 2.</b>", unsafe_allow_html=True)
                     st.markdown("<b style='text-align: justify;color:black;text-decoration-style: solid;'>Диабетът е хронично заболяване, но разбирането му и вземането на мерки за контрол могат да помогнат за подобряване на качеството на живот и предотвратяване на дългосрочни здравни проблеми.</b>", unsafe_allow_html=True)
+        
+        if selected == 'Заболяване на сърцето':
+            age, sex, cp, BloodPressure, chol, fbs, restecg, thalach, exang, oldpeak, slope, ca, thal = get_data_heart(conn, username)
+
+            col1, col2, col3  = st.columns([0.8,1,1])
+            col4,col5,col6 = st.columns([0.3,0.8,0.4])
+            col7,col8 = st.columns([1.6,0.1])
+            col9, col10, col11 = st.columns([1,1,1])
+            col12,col13 = st.columns([1.6,0.1])
+            with col10:
+                    if st.button("Резулат за заболяване на сърцето"):
+                        if cp is None:
+                            with col12:
+                                #st.error("Моля прикачете вашите изследвания в PDF формат в секция 'Профил' ")
+                                st.markdown("<p style='text-align: center; color: #F75D59;background-color:white;border-radius:25px;border: 2px solid #F75D59   ;'>Моля прикачете вашите изследвания в PDF формат в секция Профил</p>", unsafe_allow_html=True)
+                        else: 
+                            heart_prediction = heart_disease_model.predict([[age, sex, cp, BloodPressure, chol, fbs, restecg,thalach,exang,oldpeak,slope,ca,thal]]) 
+                            if (heart_prediction[0] == 1):
+                                with col12:
+                                    st.markdown("<p style='text-align: center; color: #F75D59;background-color:white;border-radius:25px;border: 2px solid #F75D59   ;'>Пациентът е възможно да има заболяване на сърцето</p>", unsafe_allow_html=True)
+                            else:
+                                with col12:
+                                    st.markdown("<p style='text-align: center; color: #F75D59;background-color:white;border-radius:25px;border: 2px solid #F75D59   ;'>Пациентът няма заболяване на сърцето</p>", unsafe_allow_html=True)
+
+
+            with col1:
+                pass
+            with col3:
+                pass
+            with col2:
+                st.markdown("<h1 style=' color: black;'> " "Заболяване на сърцето</h1>", unsafe_allow_html=True)
+                with col7:
+                    st.markdown("<h2 style=' color: black;text-align: center;'> " "Исхемична болест на сърцето (ИБС)</h1>", unsafe_allow_html=True)
+                    st.markdown("<b style='text-align: justify;color:black;text-decoration-style: solid;'>- Дефиниция: Стеснени или блокирани сърдечни артерии.</b>", unsafe_allow_html=True)
+                    st.markdown("<b style='text-align: justify;color:black;text-decoration-style: solid;'>- Симптоми: Болка в гърдите, умора, задух.</b>", unsafe_allow_html=True)
+                    st.markdown("<b style='text-align: justify;color:black;text-decoration-style: solid;'>- Фактори за риск: Високо кръвно налягане, диабет, курене.</b>", unsafe_allow_html=True)
+                    st.markdown("<h2 style=' color: black;text-align: center;'> " "Сърдечна недостатъчност</h1>", unsafe_allow_html=True)
+                    st.markdown("<b style='text-align: justify;color:black;text-decoration-style: solid;'>- Дефиниция: Неспособност на сърцето да изкачи достатъчно кръв.</b>", unsafe_allow_html=True)
+                    st.markdown("<b style='text-align: justify;color:black;text-decoration-style: solid;'>- Симптоми: Задух, оток, умора.</b>", unsafe_allow_html=True)
+                    st.markdown("<b style='text-align: justify;color:black;text-decoration-style: solid;'>- Фактори за риск: Исхемична болест, високо кръвно налягане.</b>", unsafe_allow_html=True)
+                    st.markdown("<h2 style=' color: black;text-align: center;'> " "Аритмии</h1>", unsafe_allow_html=True)
+                    st.markdown("<b style='text-align: justify;color:black;text-decoration-style: solid;'>- Дефиниция: Нереден сърдечен ритъм.</b>", unsafe_allow_html=True)
+                    st.markdown("<b style='text-align: justify;color:black;text-decoration-style: solid;'>- Симптоми: Палипси, главоболие, болка в гърдите.</b>", unsafe_allow_html=True)
+                    st.markdown("<b style='text-align: justify;color:black;text-decoration-style: solid;'>- Фактори за риск: Възраст, сърдечна недостатъчност.</b>", unsafe_allow_html=True)
+                    st.markdown("<h2 style=' color: black;text-align: center;'> " "Заболяване на сърдечни клапи</h1>", unsafe_allow_html=True)
+                    st.markdown("<b style='text-align: justify;color:black;text-decoration-style: solid;'>- Дефиниция: Проблеми с функционирането на сърдечните клапи.</b>", unsafe_allow_html=True)
+                    st.markdown("<b style='text-align: justify;color:black;text-decoration-style: solid;'>- Симптоми: Задух, умора, палпитации.</b>", unsafe_allow_html=True)
+                    st.markdown("<b style='text-align: justify;color:black;text-decoration-style: solid;'>- Фактори за риск: Хирургични процедури на сърцето.</b>", unsafe_allow_html=True)
+                
+        
+        if selected == 'Заболяване на черния дроб':
+            age, TotalBilirubin, DirectBilirubin, AlkalinePhosphatase, AlanineAminotransferase, AspartateAminotransferase, TotalProtein, Albumin, AlbuminAndGlobulinRatio = get_data_liver(conn, username)
+
+            col1, col2, col3  = st.columns([0.5,1,0.5])
+            col4,col5,col6 = st.columns([0.3,0.8,0.4])
+            col7,col8 = st.columns([1.6,0.1])
+            col9, col10, col11 = st.columns([1,1,1])
+            col12,col13 = st.columns([1.6,0.1])
+
+            with col10:
+                if st.button("Резулат за болест на черния дроб"):
+                    if TotalBilirubin is None:
+                        with col12:
+                            #st.error("Моля прикачете вашите изследвания в PDF формат в секция 'Профил' ")
+                            st.markdown("<p style='text-align: center; color: #F75D59;background-color:white;border-radius:25px;border: 2px solid #F75D59   ;'>Моля прикачете вашите изследвания в PDF формат в секция Профил</p>", unsafe_allow_html=True)
+                    else:
+                        input_data = (age, TotalBilirubin, DirectBilirubin, AlkalinePhosphatase, AlanineAminotransferase, AspartateAminotransferase, TotalProtein, Albumin, AlbuminAndGlobulinRatio)
+                        input_data_as_numpy_array= np.asarray(input_data)
+                        input_data_reshaped = input_data_as_numpy_array.reshape(1,-1)
+                        liver_prediction = liver_model.predict(input_data_reshaped)
+                        print(liver_prediction)
+                        if (liver_prediction[0] == 1):
+                            with col12:
+                                st.markdown("<p style='text-align: center; color: #F75D59;background-color:white;border-radius:25px;border: 2px solid #F75D59   ;'>Пациентът е възможно да има заболяване на черния дроб</p>", unsafe_allow_html=True)
+                        else:
+                            with col12:
+                                st.markdown("<p style='text-align: center; color: #F75D59;background-color:white;border-radius:25px;border: 2px solid #F75D59   ;'>Пациентът няма заболяване на черния дроб</p>", unsafe_allow_html=True)
+
+            with col1:
+                pass
+            with col3:
+                pass
+            with col2:
+                st.markdown("<h1 style='text-align: center; color: black;'> " "Заболяване на черния дроб</h1>", unsafe_allow_html=True)
+                with col7:
+                    st.markdown("<b style='text-align: justify;color:black;text-decoration-style: solid;'>Заболяването на черния дроб е сериозно състояние, което може да засегне функциите на черния дроб и да предизвика различни проблеми със здравето. Разбирането на факторите и начините за превенция и управление може да бъде от съществено значение.</b>", unsafe_allow_html=True)
+                    st.markdown("<b style='text-align: justify;color:black;text-decoration-style: solid;'>След провеждане на необходимите изследвания и анализ, може да се направи заключение относно състоянието на черния дроб. Важно е да се отбележи, че самоцензурното лечение и контрол на рисковите фактори също играят важна роля в поддържането на здравето на черния дроб и предотвратяването на заболявания.</b>", unsafe_allow_html=True)
+
+        
         if selected == "Намери лекарство":
             st.title('Намери своето лекарство')
             medication_name = st.text_input('Въведете името на лекарството')
