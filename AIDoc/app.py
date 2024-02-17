@@ -57,7 +57,9 @@ hide_streamlit_style = """
             """
 st.markdown(hide_streamlit_style, unsafe_allow_html=True)
 
-conn = create_connection()
+db_path = st.secrets["db_secret"]
+
+conn = create_connection(db_path)
 cursor = conn.cursor()
 init_session_state()
 
