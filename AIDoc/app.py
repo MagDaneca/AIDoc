@@ -234,14 +234,7 @@ if LOGGED_IN == True:
                                 with col12:
                                     st.markdown("<p style='text-align: center; color: #F75D59;background-color:white;border-radius:25px;border: 2px solid #F75D59   ;'>Пациентът не страда от диабет</p>", unsafe_allow_html=True)
                                     
-            with col4:
-                    if(output == '0'):
-                        with col4:
-                            st.markdown("<p style='text-align: center; color: #F75D59;background-color:white;border-radius:25px;border: 2px solid #F75D59   ;'>Пациентът е възможно да страда от диабет</p>", unsafe_allow_html=True)
-                    elif(output == '2'):
-                        with col4:
-                            st.markdown("<p style='text-align: center; color: #F75D59;background-color:white;border-radius:25px;border: 2px solid #F75D59   ;'>Пациентът не страда от диабет</p>", unsafe_allow_html=True)
-            with col7:
+                with col7:
                 st.markdown("<h1 style=' color: black;'> " "Диабет</h1>", unsafe_allow_html=True)
                 with col9:
                     st.markdown("<b style='text-align: justify;color:black;text-decoration-style: solid;'>Диабетът е сериозно заболяване, което може да оказва значително влияние върху живота на хората. Неконтролираният диабет може да има дългосрочни последици за здравето, но разбирането на типовете диабет и начините за управление може да направи голяма разлика.</b>", unsafe_allow_html=True)
