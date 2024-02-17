@@ -2,7 +2,6 @@ import sqlite3
 from datetime import datetime, timedelta
 from datetime import *
 import streamlit as st
-import subprocess
 
 def calculate_time_intervals(start_time, end_time, interval_length):
 
@@ -72,9 +71,6 @@ def add_info_doc(conn,username,specialty):
                 ''', (user_id, specialty))
 
             conn.commit()
-            subprocess.run(["git", "add", "AIDoc/aidoc.db"])
-            subprocess.run(["git", "commit", "-m", "Update SQLite database with new data"])
-            subprocess.run(["git", "push", "origin", "main"])
         else:
             print(f"User profile not saved. User with username {username} not found.")
     except sqlite3.Error as e:
@@ -100,9 +96,6 @@ def save_doc_sched(conn, username, day, start_time, end_time):
 
 
         conn.commit()
-        subprocess.run(["git", "add", "AIDoc/aidoc.db"])
-        subprocess.run(["git", "commit", "-m", "Update SQLite database with new data"])
-        subprocess.run(["git", "push", "origin", "main"])
     except sqlite3.Error as e:
         print("Error saving doctor schedule:", e)
 
@@ -154,9 +147,6 @@ def modify_schedule_for_doctor(conn, doctor_id):
 
         print("Schedule modified successfully.")
         conn.commit()
-        subprocess.run(["git", "add", "AIDoc/aidoc.db"])
-        subprocess.run(["git", "commit", "-m", "Update SQLite database with new data"])
-        subprocess.run(["git", "push", "origin", "main"])
     except Exception as e:
         # Handle any exceptions
         print(f"Error modifying schedule: {e}")
@@ -220,9 +210,6 @@ def save_appointment(conn, doctor_name, username, selected_date, selected_hour):
 
     # Commit the transaction
     conn.commit()
-    subprocess.run(["git", "add", "AIDoc/aidoc.db"])
-    subprocess.run(["git", "commit", "-m", "Update SQLite database with new data"])
-    subprocess.run(["git", "push", "origin", "main"])
 
 def get_doctor_names(conn,username):
     try:
