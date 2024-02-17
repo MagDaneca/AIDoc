@@ -300,7 +300,7 @@ if LOGGED_IN == True:
             with col2:
                 if st.button("Резулат за болест на черния дроб"):
                     if TotalBilirubin is None:
-                        with col4:
+                        with col2:
                             #st.error("Моля прикачете вашите изследвания в PDF формат в секция 'Профил' ")
                             st.markdown("<p style='text-align: center; color: #F75D59;background-color:white;border-radius:25px;border: 2px solid #F75D59   ;'>Моля прикачете вашите изследвания в PDF формат в секция Профил</p>", unsafe_allow_html=True)
                     else:
@@ -310,10 +310,10 @@ if LOGGED_IN == True:
                         liver_prediction = liver_model.predict(input_data_reshaped)
                         print(liver_prediction)
                         if (liver_prediction[0] == 1):
-                            with col4:
+                            with col2:
                                 st.markdown("<p style='text-align: center; color: #F75D59;background-color:white;border-radius:25px;border: 2px solid #F75D59   ;'>Пациентът е възможно да има заболяване на черния дроб</p>", unsafe_allow_html=True)
                         else:
-                            with col4:
+                            with col2:
                                 st.markdown("<p style='text-align: center; color: #F75D59;background-color:white;border-radius:25px;border: 2px solid #F75D59   ;'>Пациентът няма заболяване на черния дроб</p>", unsafe_allow_html=True)
             with col7:
                 st.markdown("<h1 style='text-align: center; color: black;'> " "Заболяване на черния дроб</h1>", unsafe_allow_html=True)
