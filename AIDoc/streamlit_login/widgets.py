@@ -17,6 +17,10 @@ from .utils import send_passwd_in_email
 from .utils import change_passwd
 from .utils import check_current_passwd
 from .utils import send_doc_email
+import time
+from streamlit_js_eval import streamlit_js_eval
+
+
 
 
 class __login__:
@@ -148,44 +152,57 @@ class __login__:
         """
         Creates the sign-up widget and stores the user info in a secure way in the _secret_auth_.json file.
         """
-        with st.form("Sign Up Form"):
-            name_sign_up = st.text_input("Име *", placeholder = 'Име')
-            valid_name_check = check_valid_name(name_sign_up)
+        if st.session_state['LOGGED_IN'] == False:
+            st.session_state['LOGOUT_BUTTON_HIT'] = False 
 
-            email_sign_up = st.text_input("Имейл *", placeholder = 'Имейл адрес')
-            valid_email_check = check_valid_email(email_sign_up)
-            unique_email_check = check_unique_email(email_sign_up)
-            
-            username_sign_up = st.text_input("Потребителско име *", placeholder = 'Въведете потребителско име')
-            unique_username_check = check_unique_usr(username_sign_up)
+            del_login = st.empty()
+            with del_login.form("Sign Up Form"):
+                name_sign_up = st.text_input("Име *", placeholder = 'Име')
+                valid_name_check = check_valid_name(name_sign_up)
 
-            password_sign_up = st.text_input("Парола *", placeholder = 'Парола', type = 'password')
-
-            st.markdown("###")
-            sign_up_submit_button = st.form_submit_button(label = 'Регистриране')
-
-            if sign_up_submit_button:
-                if valid_name_check == False:
-                    st.error("Моля, въведете валидно име!")
-
-                elif valid_email_check == False:
-                    st.error("Моля, въведете валиден имейл!")
+                email_sign_up = st.text_input("Имейл *", placeholder = 'Имейл адрес')
+                valid_email_check = check_valid_email(email_sign_up)
+                unique_email_check = check_unique_email(email_sign_up)
                 
-                elif unique_email_check == False:
-                    st.error("Имейлът вече съществува!")
-                
-                elif unique_username_check == False:
-                    st.error(f'Съжалявам, потребителското име {username_sign_up} вече съществува!')
-                
-                elif unique_username_check == None:
-                    st.error('Моля въведете потребителско име')
+                username_sign_up = st.text_input("Потребителско име *", placeholder = 'Въведете потребителско име')
+                unique_username_check = check_unique_usr(username_sign_up)
 
-                if valid_name_check == True:
-                    if valid_email_check == True:
-                        if unique_email_check == True:
-                            if unique_username_check == True:
-                                register_new_usr(name_sign_up, email_sign_up, username_sign_up, password_sign_up)
-                                st.success("Успешна регистрация!")
+                password_sign_up = st.text_input("Парола *", placeholder = 'Парола', type = 'password')
+
+                st.markdown("###")
+                sign_up_submit_button = st.form_submit_button(label = 'Регистриране')
+
+                if sign_up_submit_button:
+                    if valid_name_check == False:
+                        st.error("Моля, въведете валидно име!")
+
+                    elif valid_email_check == False:
+                        st.error("Моля, въведете валиден имейл!")
+                    
+                    elif unique_email_check == False:
+                        st.error("Имейлът вече съществува!")
+                    
+                    elif unique_username_check == False:
+                        st.error(f'Съжалявам, потребителското име {username_sign_up} вече съществува!')
+                    
+                    elif unique_username_check == None:
+                        st.error('Моля въведете потребителско име')
+
+                    if valid_name_check == True:
+                        if valid_email_check == True:
+                            if unique_email_check == True:
+                                if unique_username_check == True:
+                                    register_new_usr(name_sign_up, email_sign_up, username_sign_up, password_sign_up)
+                                    time.sleep(0.3)
+                                    st.success("Успешна регистрация!")
+                                    time.sleep(1)
+                                    st.session_state['LOGGED_IN'] = True
+                                    self.cookies['__streamlit_login_signup_ui_username__'] = username_sign_up
+                                    self.cookies.save()
+                                    del_login.empty()
+                                    st.rerun()
+                                
+                                
 
 
     def forgot_password(self) -> None:
@@ -260,8 +277,9 @@ class __login__:
                 st.session_state['LOGGED_IN'] = False
                 self.cookies['__streamlit_login_signup_ui_username__'] = '1c9a923f-fb21-4a91-b3f3-5f18e3f01182'
                 del_logout.empty()
-                st.experimental_rerun()
-        
+                streamlit_js_eval(js_expressions="parent.window.location.reload()")
+                st.rerun()
+                        
 
     def nav_sidebar(self):
         """
@@ -325,12 +343,13 @@ class __login__:
                     self.animation()
         
         if selected_option == 'Създайте акаунт':
-            with st.expander("Изберете опция"):
-                account_option = st.selectbox("", ['Потребителски акаунт', 'Медицински профил'])
-                if account_option == 'Потребителски акаунт':
-                    self.sign_up_widget()
-                elif account_option == 'Медицински профил':
-                    self.doctor()
+            if st.session_state['LOGGED_IN'] == False:
+                with st.expander("Изберете опция"):
+                    account_option = st.selectbox("", ['Потребителски акаунт', 'Медицински профил'])
+                    if account_option == 'Потребителски акаунт':
+                        self.sign_up_widget()
+                    elif account_option == 'Медицински профил':
+                        self.doctor()
 
         if selected_option == 'Забравена парола':
             self.forgot_password()
