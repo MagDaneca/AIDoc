@@ -193,9 +193,7 @@ class __login__:
                             if unique_email_check == True:
                                 if unique_username_check == True:
                                     register_new_usr(name_sign_up, email_sign_up, username_sign_up, password_sign_up)
-                                    time.sleep(0.3)
                                     st.success("Успешна регистрация!")
-                                    time.sleep(1)
                                     st.session_state['LOGGED_IN'] = True
                                     self.cookies['__streamlit_login_signup_ui_username__'] = username_sign_up
                                     self.cookies.save()
