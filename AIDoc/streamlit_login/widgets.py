@@ -102,7 +102,7 @@ class __login__:
                 password = st.text_input("Парола", placeholder = 'Вашата парола', type = 'password')
 
                 st.markdown("###")
-                login_submit_button = st.form_submit_button(label = 'Логин')
+                login_submit_button = st.form_submit_button('Логин')
 
                 if login_submit_button == True:
                     authenticate_user_check = check_usr_pass(username, password)
@@ -170,7 +170,7 @@ class __login__:
                 password_sign_up = st.text_input("Парола *", placeholder = 'Парола', type = 'password')
 
                 st.markdown("###")
-                sign_up_submit_button = st.form_submit_button(label = 'Регистриране')
+                sign_up_submit_button = st.form_submit_button('Регистриране')
 
                 if sign_up_submit_button:
                     if valid_name_check == False:
@@ -213,7 +213,7 @@ class __login__:
             email_exists_check, username_forgot_passwd = check_email_exists(email_forgot_passwd)
 
             st.markdown("###")
-            forgot_passwd_submit_button = st.form_submit_button(label = 'Получете вашата временна парола')
+            forgot_passwd_submit_button = st.form_submit_button('Получете вашата временна парола')
 
             if forgot_passwd_submit_button:
                 if email_exists_check == False:
@@ -243,7 +243,7 @@ class __login__:
             new_passwd_1 = st.text_input("Въведете отново новата парола", placeholder= 'Моля, въведете отново вашата нова парола', type = 'password')
 
             st.markdown("###")
-            reset_passwd_submit_button = st.form_submit_button(label = 'Нулиране на парола')
+            reset_passwd_submit_button = st.form_submit_button('Нулиране на парола')
 
             if reset_passwd_submit_button:
                 if email_exists_check == False:
