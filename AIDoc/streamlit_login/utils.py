@@ -241,7 +241,7 @@ def check_strong_password(password: str) -> bool:
     """
     Checks if the provided string is a strong password.
     """
-    password_regex = r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()-_=+{}\[\]:;<>,.?/]).{6,}$'
+    password_regex = r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^a-zA-Z\d\s]).{6,}$'
 
     if re.search(password_regex, password):
         return True
