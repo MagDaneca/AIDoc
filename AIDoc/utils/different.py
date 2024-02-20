@@ -122,3 +122,43 @@ def create_basic_custom_markdown_card(text, image_url=None):
 def init_session_state():
     if 'data' not in st.session_state:
         st.session_state.data = True
+
+def check_valid_name_bulgarian(name_sign_up: str) -> bool:
+    """
+    Checks if the user entered a valid Bulgarian name while creating the account.
+    """
+    name_regex_bulgarian = r'^[А-Яа-я]+$'
+
+    if re.search(name_regex_bulgarian, name_sign_up):
+        return True
+    return False
+
+def check_valid_username(username: str) -> bool:
+    """
+    Checks if the user entered a valid username while creating the account.
+    """
+    regex = re.compile(r'([A-Za-z0-9]+[.-_])*[A-Za-z0-9]+@[A-Za-z0-9-]+(\.[A-Z|a-z]{2,})+')
+
+    if re.fullmatch(regex, username):
+        return True
+    return False
+
+def check_valid_email(email_sign_up: str) -> bool:
+    """
+    Checks if the user entered a valid email while creating the account.
+    """
+    regex = re.compile(r'([A-Za-z0-9]+[.-_])*[A-Za-z0-9]+@[A-Za-z0-9-]+(\.[A-Z|a-z]{2,})+')
+
+    if re.fullmatch(regex, email_sign_up):
+        return True
+    return False
+
+def check_valid_phone_number(phone_number: str) -> bool:
+    """
+    Checks if the provided string is a valid phone number with exactly 10 digits.
+    """
+    phone_regex = r'^[0-9]{10}$'
+
+    if re.search(phone_regex, phone_number):
+        return True
+    return False
