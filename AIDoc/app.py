@@ -483,6 +483,10 @@ if LOGGED_IN == True:
         if selected == 'Admin panel':
             st.header("Нов доктор")
             doctor_first_name = st.text_input("Име")
+            if doc_first_name.isalpha():
+                pass
+            else:
+                st.error("Въведете валидно име!")
             doctor_sec_name = st.text_input("Фамилия")
             doc_username = st.text_input("Потребителско име")
             doc_city = st.selectbox("Град",('София','Варна','Бургас'))
@@ -504,7 +508,7 @@ if LOGGED_IN == True:
                 id_spec = 3
             doctor_email = st.text_input("Имейл")
             if st.button("Add Doctor"):
-                doc_pass = doctor_first_name + doctor_sec_name + '123'
+                doc_pass = doc_username + '123'
                 if doctor_first_name and doctor_specialty and doctor_email and doc_city and doctor_sec_name and doc_tel:
                     save_user_info(conn,doctor_first_name,doctor_sec_name,doctor_email,doc_tel,doc_username,3,doc_city)
                     add_info_doc(conn,doc_username,id_spec)
