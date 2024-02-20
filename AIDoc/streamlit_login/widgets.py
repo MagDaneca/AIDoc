@@ -130,6 +130,7 @@ class __login__:
             specialty = st.text_input("Специалност", placeholder="Практикувани специалности")
             city = st.text_input("Град", placeholder="Града в който практикувате")
             email = st.text_input("Имейл", placeholder="Имейл за връзка")
+            username = st.text_input("Потребителско име", placeholder="Потребителско име")
             st.markdown("###")
             send_info = st.form_submit_button("Изпращане")
 
@@ -142,9 +143,11 @@ class __login__:
                     st.error("Моля въведете града в който практикувате")
                 elif email == False:
                     st.error("Моля въведете имейл адрес за връзка")
+                elif username == False:
+                    st.error("Моля въведете потребителско име")
                 else:
                     st.success("Успешно изпратихте вашата информация, очаквайте имейл от екипа на AIDoc!")
-                    send_doc_email(self.auth_token,email,name,specialty,city)
+                    send_doc_email(self.auth_token,email,name,specialty,city,username)
             
 
 
