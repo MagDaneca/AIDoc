@@ -22,14 +22,6 @@ import time
 from streamlit_js_eval import streamlit_js_eval
 def info_tooltip(text):
     st.write(f"ℹ️. {text}")
-def display_password_requirements():
-    st.write("- Трябва да е поне 6 знака дълга.")
-    st.write("- Трябва да съдържа поне една малка буква.")
-    st.write("- Трябва да съдържа поне една главна буква.")
-    st.write("- Трябва да съдържа поне една цифра (0-9).")
-    st.write("- Трябва да има поне един специален знак.")
-
-
 class __login__:
     """
     Builds the UI for the Login/ Sign Up page.
@@ -178,8 +170,7 @@ class __login__:
                 unique_username_check = check_unique_usr(username_sign_up)
 
                 password_requirements_checkbox = st.checkbox("Парола изисквания", key="password_requirements_checkbox")
-                if password_requirements_checkbox:
-                    display_password_requirements()
+                info_tooltip("Паролата Ви трябва да е поне 6 знака и да съдържа: малка буква, главна буква, цифра и специален знак")
                 ch_pass = check_strong_password(password_sign_up)
 
                 st.markdown("###")
