@@ -510,32 +510,32 @@ if LOGGED_IN == True:
                 dc_em = check_valid_email(doctor_email)
                 add_doc = st.button("Add Doctor")
                 if add_doc:
-                if dc_fn == False:
-                    st.error("Въведете името на български")
-                elif dc_sn == False:
-                    st.error("Въведете фамилията на български")
-                elif dc_tel == False:
-                    st.error("Въведете валиден тел. номер")
-                elif dc_em == False:
-                    st.error("Въведете валиден имейл адрес")
-                elif dc_us == False:
-                    st.error("Въведете валидно потребителско име")
-
-                if dc_fn == True:
-                    if dc_sn == True:
-                        if dc_tel == True:
-                            if dc_em == True:
-                                if dc_us == True:
-                                    doc_pass = doc_username + '123'
-                                    if doctor_first_name and doctor_specialty and doctor_email and doc_city and doctor_sec_name and doc_tel:
-                                        save_user_info(conn,doctor_first_name,doctor_sec_name,doctor_email,doc_tel,doc_username,3,doc_city)
-                                        add_info_doc(conn,doc_username,id_spec)
-                                        register_new_usr(doctor_first_name,doctor_email,doc_username,doc_pass)
-                                        #set_default_schedule(doc_username)
-                                        #set_default_schedule_av_hours(doc_username)
-                                        st.success("Успешно!")
-                                    else:
-                                        st.warning("Моля, въведете всички полета.")
+                    if dc_fn == False:
+                        st.error("Въведете името на български")
+                    elif dc_sn == False:
+                        st.error("Въведете фамилията на български")
+                    elif dc_tel == False:
+                        st.error("Въведете валиден тел. номер")
+                    elif dc_em == False:
+                        st.error("Въведете валиден имейл адрес")
+                    elif dc_us == False:
+                        st.error("Въведете валидно потребителско име")
+    
+                    if dc_fn == True:
+                        if dc_sn == True:
+                            if dc_tel == True:
+                                if dc_em == True:
+                                    if dc_us == True:
+                                        doc_pass = doc_username + '123'
+                                        if doctor_first_name and doctor_specialty and doctor_email and doc_city and doctor_sec_name and doc_tel:
+                                            save_user_info(conn,doctor_first_name,doctor_sec_name,doctor_email,doc_tel,doc_username,3,doc_city)
+                                            add_info_doc(conn,doc_username,id_spec)
+                                            register_new_usr(doctor_first_name,doctor_email,doc_username,doc_pass)
+                                            #set_default_schedule(doc_username)
+                                            #set_default_schedule_av_hours(doc_username)
+                                            st.success("Успешно!")
+                                        else:
+                                            st.warning("Моля, въведете всички полета.")
     if role_user == 3:
         with st.sidebar:
         
