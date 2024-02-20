@@ -20,7 +20,8 @@ from .utils import send_doc_email
 from .utils import check_strong_password
 import time
 from streamlit_js_eval import streamlit_js_eval
-
+def info_tooltip(text):
+    st.write(f"ℹ️ {text}")
 
 
 
@@ -246,8 +247,10 @@ class __login__:
             current_passwd = st.text_input("Временна парола", placeholder= 'Моля, въведете паролата, която сте получили на имейла си')
             current_passwd_check = check_current_passwd(email_reset_passwd, current_passwd)
 
-            new_passwd = st.text_input("нова парола", placeholder= 'Паролата Ви трябва да е поне 6 знака и да съдържа: малка буква, главна буква, цифра и специален знак', type = 'password')
+            new_passwd = st.text_input("нова парола", placeholder= 'Въведете вашата нова парола', type = 'password')
 
+            info_tooltip("Паролата Ви трябва да е поне 6 знака и да съдържа: малка буква, главна буква, цифра и специален знак")
+            
             new_passwd_1 = st.text_input("Въведете отново новата парола", placeholder= 'Моля, въведете отново вашата нова парола', type = 'password')
 
             che_passwd = check_strong_password(new_passwd)
