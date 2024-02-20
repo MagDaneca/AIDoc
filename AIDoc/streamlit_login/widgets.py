@@ -127,10 +127,10 @@ class __login__:
         with st.form("medlice"):
             st.write("Заявете медицински профил")
             name = st.text_input("Име", placeholder="Име")
+            username = st.text_input("Потребителско име", placeholder="Потребителско име")
             specialty = st.text_input("Специалност", placeholder="Практикувани специалности")
             city = st.text_input("Град", placeholder="Града в който практикувате")
             email = st.text_input("Имейл", placeholder="Имейл за връзка")
-            username = st.text_input("Потребителско име", placeholder="Потребителско име")
             st.markdown("###")
             send_info = st.form_submit_button("Изпращане")
 
