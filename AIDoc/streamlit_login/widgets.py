@@ -180,7 +180,7 @@ class __login__:
 
                 password_sign_up = st.text_input("Парола *", placeholder = 'Парола', type = 'password')
                 with st.expander("Парола изисквания"):
-                        display_password_requirements()
+                                    display_password_requirements()
                 ch_pass = check_strong_password(password_sign_up)
 
                 st.markdown("###")
