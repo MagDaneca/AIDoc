@@ -17,6 +17,7 @@ from .utils import send_passwd_in_email
 from .utils import change_passwd
 from .utils import check_current_passwd
 from .utils import send_doc_email
+from .utils import check_strong_password
 import time
 from streamlit_js_eval import streamlit_js_eval
 
