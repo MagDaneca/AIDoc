@@ -480,7 +480,7 @@ if LOGGED_IN == True:
     if role_user == 2:
         with st.sidebar:
             selected = option_menu('AIDoc', ['Админ панел'],icons=['person'],default_index=0)
-            if selected == 'Админ панел':
+        if selected == 'Админ панел':
                 st.header("Нов доктор")
                 doctor_first_name = st.text_input("Име")
                 dc_fn = check_valid_name_bulgarian(doctor_first_name)
