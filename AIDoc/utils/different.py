@@ -137,7 +137,7 @@ def check_valid_username(username: str) -> bool:
     """
     Checks if the user entered a valid username while creating the account.
     """
-    regex = re.compile(r'^[A-Za-z0-9]+([._-]?[A-Za-z0-9]+)*@[A-Za-z0-9-]+(\.[A-Za-z]{2,})+$')
+    regex = re.compile(r'^[A-Za-z0-9_.-]+$')
 
     if re.fullmatch(regex, username):
         return True
