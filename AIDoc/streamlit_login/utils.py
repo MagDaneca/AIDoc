@@ -187,7 +187,7 @@ def send_passwd_in_email(auth_token: str, username_forgot_passwd: str, email_for
     }
     )
 
-def send_doc_email(auth_token: str, email_doc: str, user_name: str,specialty: str,city: str) -> None:
+def send_doc_email(auth_token: str, email_doc: str, user_name: str,specialty: str,city: str,username: str) -> None:
     """
     Triggers an email to the user containing the randomly generated password.
     """
@@ -200,7 +200,7 @@ def send_doc_email(auth_token: str, email_doc: str, user_name: str,specialty: st
         },
         "content": {
         "title":"Здравейте," + user_name,
-        "body": f"Здравейте {user_name}, този имейл е във връзка създаването на вашият акаунт в системата MedAssist, очаквайте съвсем скоро да се свърже нашият екип с вас!\n Данните които ни предоставихте: име: {user_name}, специалности: {specialty}, град: {city}, имейл за връзка: {email_doc}"
+        "body": f"Здравейте {user_name}, този имейл е във връзка създаването на вашият акаунт в системата MedAssist, очаквайте съвсем скоро да се свърже нашият екип с вас!\n Данните които ни предоставихте: име: {user_name},потребителско име: {username}, специалности: {specialty}, град: {city}, имейл за връзка: {email_doc}"
         },
     }
     )
