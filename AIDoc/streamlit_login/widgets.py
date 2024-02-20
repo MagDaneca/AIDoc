@@ -169,7 +169,7 @@ class __login__:
                 username_sign_up = st.text_input("Потребителско име *", placeholder = 'Въведете потребителско име')
                 unique_username_check = check_unique_usr(username_sign_up)
 
-                password_requirements_checkbox = st.checkbox("Парола изисквания", key="password_requirements_checkbox")
+                password_sign_up = st.text_input("Парола *", placeholder = "Паролата Ви трябва да пасва на изискванията")
                 info_tooltip("Паролата Ви трябва да е поне 6 знака и да съдържа: малка буква, главна буква, цифра и специален знак")
                 ch_pass = check_strong_password(password_sign_up)
 
