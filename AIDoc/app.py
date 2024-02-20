@@ -484,6 +484,7 @@ if LOGGED_IN == True:
             st.header("Нов доктор")
             doctor_first_name = st.text_input("Име")
             doctor_sec_name = st.text_input("Фамилия")
+            doc_username = st.text_input("Потребителско име")
             doc_city = st.selectbox("Град",('София','Варна','Бургас'))
             if doc_city == 'София':
                 doc_city = 1
@@ -503,7 +504,6 @@ if LOGGED_IN == True:
                 id_spec = 3
             doctor_email = st.text_input("Имейл")
             if st.button("Add Doctor"):
-                doc_username = 'doc_' + doctor_first_name
                 doc_pass = doctor_first_name + doctor_sec_name + '123'
                 if doctor_first_name and doctor_specialty and doctor_email and doc_city and doctor_sec_name and doc_tel:
                     save_user_info(conn,doctor_first_name,doctor_sec_name,doctor_email,doc_tel,doc_username,3,doc_city)
@@ -528,8 +528,10 @@ if LOGGED_IN == True:
         if selected == "Вашият график":
             col1, col2, col3 = st.columns([0.25,1,0.1])
             col4, col5, col6 = st.columns([1,1.1,0.8])
+            first_name = get_first_name(conn,username)
+            last_name = get_last_name(conn,username)
             with col2:
-                st.header(f"Здравейте, {username}")
+                st.header(f"Здравейте, {first_name} {last_name}")
             doctor_schedule = get_doctor_schedule(conn, username)
             doc_id = get_user_id_by_username(conn, username)
             today = datetime.today()
