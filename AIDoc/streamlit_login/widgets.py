@@ -170,7 +170,8 @@ class __login__:
                 username_sign_up = st.text_input("Потребителско име *", placeholder = 'Въведете потребителско име')
                 unique_username_check = check_unique_usr(username_sign_up)
 
-                password_sign_up = st.text_input("Парола *", placeholder = 'Парола', type = 'password')
+                password_sign_up = st.text_input("Парола *", placeholder = 'Паролата Ви трябва да е поне 6 знака и да съдържа: малка буква, главна буква, цифра и специален знак', type = 'password')
+                ch_pass = check_strong_password(password_sign_up)
 
                 st.markdown("###")
                 sign_up_submit_button = st.form_submit_button('Регистриране')
@@ -190,18 +191,21 @@ class __login__:
                     
                     elif unique_username_check == None:
                         st.error('Моля въведете потребителско име')
+                    elif ch_pass == False:
+                        st.error('Паролата Ви трябва да пасва на изискванията')
 
                     if valid_name_check == True:
                         if valid_email_check == True:
                             if unique_email_check == True:
                                 if unique_username_check == True:
-                                    register_new_usr(name_sign_up, email_sign_up, username_sign_up, password_sign_up)
-                                    st.success("Успешна регистрация!")
-                                    st.session_state['LOGGED_IN'] = True
-                                    self.cookies['__streamlit_login_signup_ui_username__'] = username_sign_up
-                                    self.cookies.save()
-                                    del_login.empty()
-                                    st.rerun()
+                                    if ch_pass == True:
+                                        register_new_usr(name_sign_up, email_sign_up, username_sign_up, password_sign_up)
+                                        st.success("Успешна регистрация!")
+                                        st.session_state['LOGGED_IN'] = True
+                                        self.cookies['__streamlit_login_signup_ui_username__'] = username_sign_up
+                                        self.cookies.save()
+                                        del_login.empty()
+                                        st.rerun()
                                 
                                 
 
@@ -241,9 +245,11 @@ class __login__:
             current_passwd = st.text_input("Временна парола", placeholder= 'Моля, въведете паролата, която сте получили на имейла си')
             current_passwd_check = check_current_passwd(email_reset_passwd, current_passwd)
 
-            new_passwd = st.text_input("нова парола", placeholder= 'Моля, въведете нова, силна парола', type = 'password')
+            new_passwd = st.text_input("нова парола", placeholder= 'Паролата Ви трябва да е поне 6 знака и да съдържа: малка буква, главна буква, цифра и специален знак', type = 'password')
 
             new_passwd_1 = st.text_input("Въведете отново новата парола", placeholder= 'Моля, въведете отново вашата нова парола', type = 'password')
+
+            che_passwd = check_strong_password(new_passwd)
 
             st.markdown("###")
             reset_passwd_submit_button = st.form_submit_button('Нулиране на парола')
@@ -257,11 +263,15 @@ class __login__:
 
                 elif new_passwd != new_passwd_1:
                     st.error("Паролите не съвпадат!")
+
+                elif che_passwd == False:
+                    st.error('Паролата Ви трябва да пасва на изискванията')
             
                 if email_exists_check == True:
                     if current_passwd_check == True:
-                        change_passwd(email_reset_passwd, new_passwd)
-                        st.success("Успешно нулиране на паролата!")
+                        if che_passwd == True:
+                            change_passwd(email_reset_passwd, new_passwd)
+                            st.success("Успешно нулиране на паролата!")
                 
 
     def logout_widget(self) -> None:
