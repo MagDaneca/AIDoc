@@ -483,10 +483,6 @@ if LOGGED_IN == True:
         if selected == 'Admin panel':
             st.header("Нов доктор")
             doctor_first_name = st.text_input("Име")
-            if doc_first_name.isalpha():
-                pass
-            else:
-                st.error("Въведете валидно име!")
             doctor_sec_name = st.text_input("Фамилия")
             doc_username = st.text_input("Потребителско име")
             doc_city = st.selectbox("Град",('София','Варна','Бургас'))
