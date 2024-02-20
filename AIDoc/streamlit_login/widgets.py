@@ -102,7 +102,7 @@ class __login__:
                 password = st.text_input("Парола", placeholder = 'Вашата парола', type = 'password')
 
                 st.markdown("###")
-                login_submit_button = st.form_submit_button('Логин')
+                login_submit_button = st.form_submit_button('Вход')
 
                 if login_submit_button == True:
                     authenticate_user_check = check_usr_pass(username, password)
@@ -289,7 +289,7 @@ class __login__:
                 menu_title = 'AIDoc',
                 menu_icon = 'list-columns-reverse',
                 icons = ['box-arrow-in-right', 'person-plus', 'x-circle','arrow-counterclockwise'],
-                options = ['Логин', 'Създайте акаунт', 'Забравена парола', 'Нулиране на парола'],
+                options = ['Вход', 'Създайте акаунт', 'Забравена парола', 'Нулиране на парола'],
                 styles = {
                     "container": {"padding": "5px"},
                     "nav-link": {"font-size": "14px", "text-align": "left", "margin":"0px"}} )
@@ -332,7 +332,7 @@ class __login__:
 
         main_page_sidebar, selected_option = self.nav_sidebar()
 
-        if selected_option == 'Логин':
+        if selected_option == 'Вход':
             c1, c2 = st.columns([7,3])
             with c1:
                 self.login_widget()
