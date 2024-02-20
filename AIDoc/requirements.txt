@@ -1,5 +1,5 @@
 PyPDF2==3.0.1
-streamlit==1.29.0
+streamlit==1.31.1
 cryptography==39.0.2
 folium==0.15.1
 streamlit-option-menu==0.3.6
