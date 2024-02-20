@@ -172,7 +172,8 @@ class __login__:
                 username_sign_up = st.text_input("Потребителско име *", placeholder = 'Въведете потребителско име')
                 unique_username_check = check_unique_usr(username_sign_up)
 
-                password_sign_up = st.text_input("Парола *", placeholder = 'Паролата Ви трябва да е поне 6 знака и да съдържа: малка буква, главна буква, цифра и специален знак', type = 'password')
+                password_sign_up = st.text_input("Парола *", placeholder = 'Парола', type = 'password')
+                info_tooltip("Паролата Ви трябва да е поне 6 знака и да съдържа: малка буква, главна буква, цифра и специален знак")
                 ch_pass = check_strong_password(password_sign_up)
 
                 st.markdown("###")
@@ -247,7 +248,7 @@ class __login__:
             current_passwd = st.text_input("Временна парола", placeholder= 'Моля, въведете паролата, която сте получили на имейла си')
             current_passwd_check = check_current_passwd(email_reset_passwd, current_passwd)
 
-            new_passwd = st.text_input("нова парола", placeholder= 'Въведете вашата нова парола', type = 'password')
+            new_passwd = st.text_input("Нова парола", placeholder= 'Въведете вашата нова парола', type = 'password')
 
             info_tooltip("Паролата Ви трябва да е поне 6 знака и да съдържа: малка буква, главна буква, цифра и специален знак")
             
