@@ -590,7 +590,7 @@ if LOGGED_IN == True:
                     patient_first_name = get_firsty_name(conn,appointment['patient_username'])
                     patient_second_name = get_lasty_name(conn,appointment['patient_username'])
                     patient_telephone = get_tel_number(conn,appointment['patient_username'])
-                    title = f"{patient_first_name} {patient_second_name}, tel:{patient_telephone}"
+                    title = f"{patient_first_name} {patient_second_name}, тел. номер:{patient_telephone}"
 
                     # Create event for each appointment
                     event = {
