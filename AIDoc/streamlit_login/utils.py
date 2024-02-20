@@ -237,6 +237,16 @@ def check_current_passwd(email_reset_passwd: str, current_passwd: str) -> bool:
                     pass
     return False
 
+def check_strong_password(password: str) -> bool:
+    """
+    Checks if the provided string is a strong password.
+    """
+    password_regex = r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()-_=+{}\[\]:;<>,.?\\/]).{6,}$'
+
+    if re.search(password_regex, password):
+        return True
+    return False
+
 # Author: Gauri Prabhakar
 # GitHub: https://github.com/GauriSP10/streamlit_login_auth_ui
 
