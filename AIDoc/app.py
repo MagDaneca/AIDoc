@@ -193,8 +193,8 @@ if LOGGED_IN == True:
                     if Sex=="мъж":
                         Pregnancies = 0
                     else:
-                        Pregnancies = st.number_input("Бременности" ,0,50,None,1, placeholder = 'Брой бременности')
-                    Height = st.number_input("Височина",0.01,300.00,None,0.01, placeholder="Височината ви в метри(Пример 181см->1.81)")
+                        Pregnancies = st.number_input("Бременности",0,50,None,1, placeholder = 'Брой бременности')
+                    Height = st.number_input("Височина",0.01,4.00,None,0.01, placeholder="Височината ви в метри(Пример 181см->1.81)")
                     Kilo = st.number_input("Тегло", 0.01, 300.00,None, 0.01 , placeholder="Теглото ви в килограми")
                     if height != None:
                         BMI = kilo/(height*height)
