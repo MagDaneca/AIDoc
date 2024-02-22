@@ -184,8 +184,11 @@ if LOGGED_IN == True:
                 col1, col2 = st.columns([1.5,2])
                 with col1:
                     first_name = st.text_input("Първо име",placeholder="Иван")
+                    ch_fn = check_valid_name_bulgarian(first_name)
                     second_name = st.text_input("Фамилия",placeholder="Иванов")
-                    tel_number = st.text_input("Телефонен номер",placeholder="+359888888888")
+                    ch_sn = check_valid_name_bulgarian(second_name)
+                    tel_number = st.text_input("Телефонен номер",placeholder="+35988888888")
+                    ch_tel = check_valid_phone_number(tel_number)
                 with col2:
                     result = None
                     Age = st.number_input("Възраст",1,100,None,1)
@@ -200,9 +203,14 @@ if LOGGED_IN == True:
                         BMI = kilo/(height*height)
                     if st.button("Запази") == True:
                         auth_par_check = check_parameters_filled(Age,Sex,Height,Kilo)
-                        info_filled = bool(first_name.strip()) and bool(second_name.strip()) and bool(tel_number.strip())  # Check if text inputs are filled
-                        if auth_par_check == False or not info_filled:
+                        if auth_par_check == False:
                             st.error("Въведете вашите данни във всички полета!")
+                        elif ch_fn == False:
+                            st.error("Въведете вашето име на кирилица")
+                        elif ch_sn == False:
+                            st.error("Въведете вашата фамилия на кирилица")
+                        elif ch_tel == False:
+                            st.error("Въведете валиден телефонен номер")
                         else:
                             save_user_info(conn,first_name,second_name,None,tel_number,username,role_user,1)
                             save_user_profile(conn,username,Age,Sex,Pregnancies,Height,Kilo)
