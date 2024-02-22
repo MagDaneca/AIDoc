@@ -182,6 +182,7 @@ if LOGGED_IN == True:
                         st.rerun()
             else:
                 col1, col2 = st.columns([1.5,2])
+                col3,col4, col5 = st.columns([0.5,1,0.5])
                 with col1:
                     first_name = st.text_input("Първо име",placeholder="Иван")
                     ch_fn = check_valid_name_bulgarian(first_name)
@@ -204,13 +205,17 @@ if LOGGED_IN == True:
                     if st.button("Запази") == True:
                         auth_par_check = check_parameters_filled(Age,Sex,Height,Kilo)
                         if auth_par_check == False:
-                            st.error("Въведете вашите данни във всички полета!")
+                            with col4:
+                                st.error("Въведете вашите данни във всички полета!")
                         elif ch_fn == False:
-                            st.error("Въведете вашето име на кирилица")
+                            with col4:
+                                st.error("Въведете вашето име на кирилица")
                         elif ch_sn == False:
-                            st.error("Въведете вашата фамилия на кирилица")
+                            with col4:
+                                st.error("Въведете вашата фамилия на кирилица")
                         elif ch_tel == False:
-                            st.error("Въведете валиден телефонен номер")
+                            with col4:
+                                st.error("Въведете валиден телефонен номер")
                         else:
                             save_user_info(conn,first_name,second_name,None,tel_number,username,role_user,1)
                             save_user_profile(conn,username,Age,Sex,Pregnancies,Height,Kilo)
