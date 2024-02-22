@@ -202,7 +202,9 @@ if LOGGED_IN == True:
                     Kilo = st.number_input("Тегло", 0.01, 300.00,None, 0.01 , placeholder="Теглото ви в килограми")
                     if height != None:
                         BMI = kilo/(height*height)
-                    if st.button("Запази") == True:
+                with col4:
+                    save_btn = st.button("Запази")
+                    if save_btn == True:
                         auth_par_check = check_parameters_filled(Age,Sex,Height,Kilo)
                         if auth_par_check == False:
                             with col4:
