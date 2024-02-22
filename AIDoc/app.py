@@ -182,7 +182,7 @@ if LOGGED_IN == True:
                         st.rerun()
             else:
                 col1, col2 = st.columns([1.5,2])
-                col3,col4, col5 = st.columns([0.7,0.8,0.5])
+                col3,col4, col5 = st.columns([0.75,0.75,0.5])
                 with col1:
                     first_name = st.text_input("Първо име",placeholder="Иван")
                     ch_fn = check_valid_name_bulgarian(first_name)
