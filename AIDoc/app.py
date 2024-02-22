@@ -193,7 +193,7 @@ if LOGGED_IN == True:
                     if Sex=="мъж":
                         Pregnancies = 0
                     else:
-                        Pregnancies = st.text_input("Бременности" , placeholder = 'Брой бременности')
+                        Pregnancies = st.number_input("Бременности" ,0,50,None,1, placeholder = 'Брой бременности')
                     Height = st.number_input("Височина",0.01,300.00,None,0.01, placeholder="Височината ви в метри(Пример 181см->1.81)")
                     Kilo = st.number_input("Тегло", 0.01, 300.00,None, 0.01 , placeholder="Теглото ви в килограми")
                     if height != None:
