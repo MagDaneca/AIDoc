@@ -324,7 +324,7 @@ if LOGGED_IN == True:
                         input_data = (age, TotalBilirubin, DirectBilirubin, AlkalinePhosphatase, AlanineAminotransferase, AspartateAminotransferase, TotalProtein, Albumin, AlbuminAndGlobulinRatio)
                         input_data_as_numpy_array= np.asarray(input_data)
                         input_data_reshaped = input_data_as_numpy_array.reshape(1,-1)
-                        liver_prediction = liver_disease_model.predict(input_data_reshaped)
+                        liver_prediction = liver_model.predict(input_data_reshaped)
                         print(liver_prediction)
                         if (liver_prediction[0] == 1):
                             with col4:
