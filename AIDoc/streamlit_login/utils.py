@@ -1,6 +1,6 @@
 import re
 import json
-from trycourier import Courier
+from courier import Courier
 import secrets
 from argon2 import PasswordHasher
 import requests
