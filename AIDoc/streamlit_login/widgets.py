@@ -353,7 +353,7 @@ class __login__:
                 self.login_widget()
             with c2:
                 if st.session_state['LOGGED_IN'] == False:
-                    st.image('logo.png', width=400)
+                    st.image('AIDoc/logo.png', width=400)
         
         if selected_option == 'Създайте акаунт':
             if st.session_state['LOGGED_IN'] == False:
