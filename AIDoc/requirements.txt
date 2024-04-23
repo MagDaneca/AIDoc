@@ -16,3 +16,4 @@ streamlit-js-eval==0.1.5
 trycourier==6.0.1
 tensorflow==2.16.1
 keras==3.2.1
+streamlit-modal==0.1.2
