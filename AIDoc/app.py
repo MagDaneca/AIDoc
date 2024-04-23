@@ -81,7 +81,6 @@ extracted_text = ""
 session()
 
 if LOGGED_IN == True:
-    st.image('AIDoc/logo.png', width = 200)
     username = __login__obj.cookies['__streamlit_login_signup_ui_username__']
     role_user = get_user_role(conn,username)
     if role_user is None:
