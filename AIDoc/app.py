@@ -193,7 +193,7 @@ if LOGGED_IN == True:
                     st.session_state.info = True
                     with modal.container():
                         st.markdown("<p style='text-align: center; color: black;'>В секцията профил Вие трябва да въведете вашите данни:</p>", unsafe_allow_html=True)
-                        st.image('profile.png')
+                        st.image('AIDoc/profile.png')
                         st.markdown("<p style='text-align: center; color: black;'>При натискане на бутона запази Вашите данни ще бъдат запазени в системата</p>", unsafe_allow_html=True)
             else:
                 col1, col2 = st.columns([1.5,2])
