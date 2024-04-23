@@ -98,7 +98,6 @@ if LOGGED_IN == True:
         option3 = 'Тествай се'
         option4 = 'Намери лекарство'
         with st.sidebar:
-            st.image('AIDoc/logo.png', width = 200)
             container = st.container (border=True)
             with container:
                 selected = option_menu('AIDoc',
