@@ -17,6 +17,7 @@ from datetime import timedelta, datetime
 from datetime import *
 import folium
 from streamlit_folium import folium_static
+import tensorflow as tf
 import numpy as np
 
 db_path = st.secrets["db_secret"]
