@@ -14,4 +14,4 @@ streamlit-lottie==0.0.5
 streamlit-login-auth-ui==0.2.0
 streamlit-js-eval==0.1.5
 trycourier==6.0.1
-tensorflow==3.10
+tensorflow==3.12
