@@ -19,6 +19,7 @@ import folium
 from streamlit_folium import folium_static
 import tensorflow as tf
 import numpy as np
+from streamlit_modal import Modal
 
 db_path = st.secrets["db_secret"]
 
@@ -184,6 +185,17 @@ if LOGGED_IN == True:
                         result = None
                         save_user_profile(conn,username, age, sex, pregnancies, height, kilo)
                         st.rerun()
+                modal = Modal(key = "Demo",title = "Как да използваме приложението", padding = -10, max_width= 700)
+                info = st.button("info")
+                if info:
+                    modal.open()
+                if modal.is_open():
+                    st.session_state.info = True
+                    with modal.container():
+                        if modal.page == 1:
+                            st.markdown("<p style='text-align: center; color: black;'>В секцията профил Вие трябва да въведете вашите данни:</p>", unsafe_allow_html=True)
+                            st.image('profile.png')
+                            st.markdown("<p style='text-align: center; color: black;'>При натискане на бутона запази Вашите данни ще бъдат запазени в системата</p>", unsafe_allow_html=True)
             else:
                 col1, col2 = st.columns([1.5,2])
                 col3,col4, col5 = st.columns([0.75,0.75,0.5])
