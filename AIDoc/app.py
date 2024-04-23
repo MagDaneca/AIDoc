@@ -247,7 +247,9 @@ if LOGGED_IN == True:
                             with col4:
                                 st.markdown("<p style='text-align: center; color: #F75D59;background-color:white;border-radius:25px;border: 2px solid #F75D59   ;'>Моля прикачете вашите изследвания в PDF формат в секция Профил</p>", unsafe_allow_html=True)
                         else:
-                            diab_prediction = diabetes_model.predict([[pregnancies, Glucose, BloodPressure, Insulin, bmi, age]])
+                            input_data = [[pregnancies, Glucose, BloodPressure, Insulin, bmi, age]]
+                            input_array = np.array(input_data)
+                            diab_prediction = diabetes_model.predict(input_array)
                             if (diab_prediction[0] == 1):
                                 with col4:
                                     st.markdown("<p style='text-align: center; color: #F75D59;background-color:white;border-radius:25px;border: 2px solid #F75D59   ;'>Пациентът е възможно да страда от диабет</p>", unsafe_allow_html=True)
