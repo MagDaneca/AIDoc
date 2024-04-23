@@ -21,6 +21,8 @@ import numpy as np
 
 db_path = st.secrets["db_secret"]
 
+st.set_page_config(page_title="AIDoc", page_icon=":pill:", layout="centered")
+
 def get_working_hours(username,day):
     conn = create_connection(db_path)
     cursor = conn.cursor()
