@@ -185,16 +185,6 @@ if LOGGED_IN == True:
                         result = None
                         save_user_profile(conn,username, age, sex, pregnancies, height, kilo)
                         st.rerun()
-                modal = Modal(key = "Demo",title = "Как да използваме приложението", padding = -10, max_width= 700)
-                info = st.button("info")
-                if info:
-                    modal.open()
-                if modal.is_open():
-                    st.session_state.info = True
-                    with modal.container():
-                        st.markdown("<p style='text-align: center; color: black;'>В секцията профил Вие трябва да въведете вашите данни:</p>", unsafe_allow_html=True)
-                        st.image('AIDoc/profile.png')
-                        st.markdown("<p style='text-align: center; color: black;'>При натискане на бутона запази Вашите данни ще бъдат запазени в системата</p>", unsafe_allow_html=True)
             else:
                 col1, col2 = st.columns([1.5,2])
                 col3,col4, col5 = st.columns([0.75,0.75,0.5])
@@ -243,6 +233,16 @@ if LOGGED_IN == True:
                             if data_created:
                                 st.rerun()
             medical_tests = st.file_uploader("Качете вашите изследвания в PDF формат тук:", type=['pdf'])
+            modal = Modal(key = "Demo",title = "Как да използваме приложението", padding = -10, max_width= 700)
+            info = st.button("info")
+            if info:
+                modal.open()
+            if modal.is_open():
+                st.session_state.info = True
+                with modal.container():
+                    st.markdown("<p style='text-align: center; color: black;'>В секцията профил Вие трябва да въведете вашите данни:</p>", unsafe_allow_html=True)
+                    st.image('AIDoc/profile.png')
+                    st.markdown("<p style='text-align: center; color: black;'>При натискане на бутона запази Вашите данни ще бъдат запазени в системата</p>", unsafe_allow_html=True)
             find(medical_tests)
             
         if selected == 'Диабет':
