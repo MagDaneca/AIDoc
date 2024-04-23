@@ -192,10 +192,9 @@ if LOGGED_IN == True:
                 if modal.is_open():
                     st.session_state.info = True
                     with modal.container():
-                        if modal.page == 1:
-                            st.markdown("<p style='text-align: center; color: black;'>В секцията профил Вие трябва да въведете вашите данни:</p>", unsafe_allow_html=True)
-                            st.image('profile.png')
-                            st.markdown("<p style='text-align: center; color: black;'>При натискане на бутона запази Вашите данни ще бъдат запазени в системата</p>", unsafe_allow_html=True)
+                        st.markdown("<p style='text-align: center; color: black;'>В секцията профил Вие трябва да въведете вашите данни:</p>", unsafe_allow_html=True)
+                        st.image('profile.png')
+                        st.markdown("<p style='text-align: center; color: black;'>При натискане на бутона запази Вашите данни ще бъдат запазени в системата</p>", unsafe_allow_html=True)
             else:
                 col1, col2 = st.columns([1.5,2])
                 col3,col4, col5 = st.columns([0.75,0.75,0.5])
