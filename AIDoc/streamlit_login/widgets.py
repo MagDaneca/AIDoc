@@ -283,7 +283,8 @@ class __login__:
         if st.session_state['LOGGED_IN'] == True:
             del_logout = st.sidebar.empty()
             del_logout.markdown("#")
-            del_logout.image('AIDoc/logo.png', width = 200)
+            logo = del_logout.image('AIDoc/logo.png', width = 200)
+            st.image(logo)
             logout_click_check = del_logout.button(self.logout_button_name)
 
             if logout_click_check == True:
