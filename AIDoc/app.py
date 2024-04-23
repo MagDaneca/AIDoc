@@ -100,6 +100,7 @@ if LOGGED_IN == True:
         with st.sidebar:
             container = st.container (border=True)
             with container:
+                st.image('AIDoc/logo.png', width=200)
                 selected = option_menu('AIDoc',
                                 
                                 [
