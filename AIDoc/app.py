@@ -21,7 +21,7 @@ import tensorflow as tf
 import numpy as np
 from streamlit_modal import Modal
 
-db_path = r'D:\AIDoc\AIDoc\aidoc.db'
+db_path = st.secrets["db_secret"]
 
 st.set_page_config(page_title="AIDoc", page_icon="AIDoc/logo.png", layout="centered")
 
@@ -66,9 +66,9 @@ conn = create_connection(db_path)
 cursor = conn.cursor()
 init_session_state()
 
-diabetes_model = tf.keras.models.load_model("D:\AIDoc\AIDoc\data\diabetes_model.keras")
-liver_disease_model = pickle.load(open(rb'D:\AIDoc\AIDoc\Trained models\liver_disease_model.sav', 'rb'))
-heart_disease_model = pickle.load(open(rb'D:\AIDoc\AIDoc\Trained models\heart_disease_model.sav','rb'))
+diabetes_model = tf.keras.models.load_model("AIDoc\data\diabetes_model.keras")
+liver_disease_model = pickle.load(open(rb'AIDoc\Trained models\liver_disease_model.sav', 'rb'))
+heart_disease_model = pickle.load(open(rb'AIDoc\Trained models\heart_disease_model.sav','rb'))
 
 __login__obj = __login__(auth_token = "pk_prod_TSABQG9T12M5J7P5Q91W4CK2HN75", 
                          
@@ -241,10 +241,10 @@ if LOGGED_IN == True:
                 st.session_state.info = True
                 with modal.container():
                     st.markdown("<p style='text-align: center; color: black;'>В секцията профил Вие трябва да въведете вашите данни:</p>", unsafe_allow_html=True)
-                    st.image(r'D:\AIDoc\AIDoc\images\profile.png')
+                    st.image('AIDoc\images\profile.png')
                     st.markdown("<p style='text-align: center; color: black;'>При натискане на бутона 'Запази' Вашите данни ще бъдат запазени в системата, като винаги можете да ги промените чрез бутона 'Променете вашите данни'.</p>", unsafe_allow_html=True)
                     st.markdown("<p style='text-align: center; color: black;'>Тук можете да прикачите вашите лабораторни изследвания в PDF формат и да продължите напред към тестовете:</p>", unsafe_allow_html=True)
-                    st.image(r'D:\AIDoc\AIDoc\images\pdf.png')
+                    st.image('AIDoc\images\pdf.png')
             find(medical_tests)
             
         if selected == 'Диабет':
@@ -280,7 +280,7 @@ if LOGGED_IN == True:
                 with modal.container():
                     st.markdown("<p style='text-align: center; color: black;'>В секцията 'Тествай се' можете да видите прогнозата на нашите AI(Изкуствен Интелект) модели по вашите данни за различни заболявания</p>", unsafe_allow_html=True)
                     st.markdown("<p style='text-align: center; color: black;'>След като сте прикачили вашите изследвания в секцията 'Профил', натиснете бутона за резултат.</p>", unsafe_allow_html=True)
-                    st.image(r'D:\AIDoc\AIDoc\images\diseases.png')                     
+                    st.image('AIDoc\images\diseases.png')                     
             with col10:
                 st.markdown("<h1 style=' color: black;'> " "Диабет</h1>", unsafe_allow_html=True)
             with col12:
@@ -326,7 +326,7 @@ if LOGGED_IN == True:
                 with modal.container():
                     st.markdown("<p style='text-align: center; color: black;'>В секцията 'Тествай се' можете да видите прогнозата на нашите AI(Изкуствен Интелект) модели по вашите данни за различни заболявания</p>", unsafe_allow_html=True)
                     st.markdown("<p style='text-align: center; color: black;'>След като сте прикачили вашите изследвания в секцията 'Профил', натиснете бутона за резултат.</p>", unsafe_allow_html=True)
-                    st.image(r'D:\AIDoc\AIDoc\images\diseases.png')
+                    st.image('AIDoc\images\diseases.png')
             with col10:
                 st.markdown("<h1 style=' color: black;'> " "Заболяване на сърцето</h1>", unsafe_allow_html=True)
             with col12:
@@ -385,7 +385,7 @@ if LOGGED_IN == True:
                 with modal.container():
                     st.markdown("<p style='text-align: center; color: black;'>В секцията 'Тествай се' можете да видите прогнозата на нашите AI(Изкуствен Интелект) модели по вашите данни за различни заболявания</p>", unsafe_allow_html=True)
                     st.markdown("<p style='text-align: center; color: black;'>След като сте прикачили вашите изследвания в секцията 'Профил', натиснете бутона за резултат.</p>", unsafe_allow_html=True)
-                    st.image(r'D:\AIDoc\AIDoc\images\diseases.png')
+                    st.image('AIDoc\images\diseases.png')
             with col10:
                 st.markdown("<h1 style='text-align: center; color: black;'> " "Заболяване на черния дроб</h1>", unsafe_allow_html=True)
             with col12:
@@ -404,9 +404,9 @@ if LOGGED_IN == True:
                 with modal.container():
                     st.markdown("<p style='text-align: center; color: black;'>В секцията 'Намери лекарство' можете да си изваждате информация за дадено лекарство и наличието му в различни аптеки</p>", unsafe_allow_html=True)
                     st.markdown("<p style='text-align: center; color: black;'>Въведете в търсачката име на лекарство и ще ви изкара малко информация за него както и снимка.</p>", unsafe_allow_html=True)
-                    st.image(r'D:\AIDoc\AIDoc\images\medication.png')
+                    st.image('AIDoc\images\medication.png')
                     st.markdown("<p style='text-align: center; color: black;'>По-надол ще видите карта, на която са изобразени аптеки, които имат в наличност даденото лекарство. Ако натиснете с мишката върху някоя от тях ще ви изкара нейното име и адрес.</p>", unsafe_allow_html=True)
-                    st.image(r'D:\AIDoc\AIDoc\images\map.png')
+                    st.image('AIDoc\images\map.png')
             medication_name = st.text_input('Въведете името на лекарството')
             if st.button('Потърси'):
                 c = conn.cursor()
@@ -465,7 +465,7 @@ if LOGGED_IN == True:
                 with modal.container():
                     st.markdown("<p style='text-align: center; color: black;'>В секцията 'Запиши си час онлайн' можете да си запазвате час с нашите лекари, като имате възможността да филтрирате вашето търсене на лекар според града и специалността</p>", unsafe_allow_html=True)
                     st.markdown("<p style='text-align: center; color: black;'>След като си изберете лекаря, ако има свободни часове на датата, която сте посочили, ще се изобразят отляво. Натиснете желания от вас час и натиснете бутона 'Запази час'.</p>", unsafe_allow_html=True)
-                    st.image(r'D:\AIDoc\AIDoc\images\appointment.png')
+                    st.image('AIDoc\images\appointment.png')
             col1,col2,col3 = st.columns([4,0.5,4])
             with col1:
                 filtered = False
