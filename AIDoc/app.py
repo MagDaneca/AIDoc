@@ -21,7 +21,7 @@ import tensorflow as tf
 import numpy as np
 from streamlit_modal import Modal
 
-db_path = st.secrets["db_secret"]
+db_path = r'D:\AIDoc\AIDoc\aidoc.db'
 
 st.set_page_config(page_title="AIDoc", page_icon="AIDoc/logo.png", layout="centered")
 
@@ -66,9 +66,9 @@ conn = create_connection(db_path)
 cursor = conn.cursor()
 init_session_state()
 
-diabetes_model = tf.keras.models.load_model("AIDoc/data/diabetes_model.keras")
-liver_disease_model = pickle.load(open(rb'AIDoc/Trained models/liver_disease_model.sav', 'rb'))
-heart_disease_model = pickle.load(open(rb'AIDoc/Trained models/heart_disease_model.sav','rb'))
+diabetes_model = tf.keras.models.load_model("D:\AIDoc\AIDoc\data\diabetes_model.keras")
+liver_disease_model = pickle.load(open(rb'D:\AIDoc\AIDoc\Trained models\liver_disease_model.sav', 'rb'))
+heart_disease_model = pickle.load(open(rb'D:\AIDoc\AIDoc\Trained models\heart_disease_model.sav','rb'))
 
 __login__obj = __login__(auth_token = "pk_prod_TSABQG9T12M5J7P5Q91W4CK2HN75", 
                          
@@ -104,7 +104,7 @@ if LOGGED_IN == True:
         with st.sidebar:
             container = st.container (border=True)
             with container:
-                st.image('AIDoc/logo.png', width=200)
+                st.image('D:\AIDoc\AIDoc\images\logo.png', width=200)
                 selected = option_menu('AIDoc',
                                 
                                 [
@@ -233,16 +233,18 @@ if LOGGED_IN == True:
                             if data_created:
                                 st.rerun()
             medical_tests = st.file_uploader("Качете вашите изследвания в PDF формат тук:", type=['pdf'])
-            modal = Modal(key = "Demo",title = "Как да използваме приложението", padding = -10, max_width= 700)
-            info = st.button("info")
+            modal = Modal(key = "Demo",title = "Начална страница", padding = -10, max_width= 700)
+            info = st.button("Как се използва?")
             if info:
                 modal.open()
             if modal.is_open():
                 st.session_state.info = True
                 with modal.container():
                     st.markdown("<p style='text-align: center; color: black;'>В секцията профил Вие трябва да въведете вашите данни:</p>", unsafe_allow_html=True)
-                    st.image('AIDoc/profile.png')
-                    st.markdown("<p style='text-align: center; color: black;'>При натискане на бутона запази Вашите данни ще бъдат запазени в системата</p>", unsafe_allow_html=True)
+                    st.image(r'D:\AIDoc\AIDoc\images\profile.png')
+                    st.markdown("<p style='text-align: center; color: black;'>При натискане на бутона 'Запази' Вашите данни ще бъдат запазени в системата, като винаги можете да ги промените чрез бутона 'Променете вашите данни'.</p>", unsafe_allow_html=True)
+                    st.markdown("<p style='text-align: center; color: black;'>Тук можете да прикачите вашите лабораторни изследвания в PDF формат и да продължите напред към тестовете:</p>", unsafe_allow_html=True)
+                    st.image(r'D:\AIDoc\AIDoc\images\pdf.png')
             find(medical_tests)
             
         if selected == 'Диабет':
@@ -251,7 +253,8 @@ if LOGGED_IN == True:
             col1, col2, col3  = st.columns([1,1,1])
             col4,col5 = st.columns([1.6,0.1])
             col6,col7,col8 = st.columns([1,1,1])
-            col9,col10 = st.columns([1.6,0.1])
+            col9,col10,col11 = st.columns([1,1,1])
+            col12,col113 = st.columns([1.6,0.1])
             with col2:
                     if st.button("Резулат за диабет"):
                         if Glucose is None:
@@ -267,10 +270,20 @@ if LOGGED_IN == True:
                             else:
                                 with col4:
                                     st.markdown("<p style='text-align: center; color: #F75D59;background-color:white;border-radius:25px;border: 2px solid #F75D59   ;'>Пациентът не страда от диабет</p>", unsafe_allow_html=True)
-                                    
-            with col7:
+            modal = Modal(key = "Demo",title = "Тестване", padding = -10, max_width= 700)
+            with col7:    
+                info = st.button("Как се използва?")
+            if info:
+                modal.open()
+            if modal.is_open():
+                st.session_state.info = True
+                with modal.container():
+                    st.markdown("<p style='text-align: center; color: black;'>В секцията 'Тествай се' можете да видите прогнозата на нашите AI(Изкуствен Интелект) модели по вашите данни за различни заболявания</p>", unsafe_allow_html=True)
+                    st.markdown("<p style='text-align: center; color: black;'>След като сте прикачили вашите изследвания в секцията 'Профил', натиснете бутона за резултат.</p>", unsafe_allow_html=True)
+                    st.image(r'D:\AIDoc\AIDoc\images\diseases.png')                     
+            with col10:
                 st.markdown("<h1 style=' color: black;'> " "Диабет</h1>", unsafe_allow_html=True)
-            with col9:
+            with col12:
                     st.markdown("<b style='text-align: justify;color:black;text-decoration-style: solid;'>Диабетът е сериозно заболяване, което може да оказва значително влияние върху живота на хората. Неконтролираният диабет може да има дългосрочни последици за здравето, но разбирането на типовете диабет и начините за управление може да направи голяма разлика.</b>", unsafe_allow_html=True)
                     st.markdown("<h2 style=' color: black;text-align: center;'> " "Тип 1 Диабет</h1>", unsafe_allow_html=True)
                     st.markdown("<b style='text-align: justify;color:black;text-decoration-style: solid;'>Тип 1 диабет обикновено се развива при по-млади хора и е свързан с недостатъчно произвеждане на инсулин от тялото. Инсулинът е ключов хормон, който регулира нивата на захар в кръвта. Хората с този тип диабет обикновено се нуждаят от външен източник на инсулин, като инсулинови инжекции или помпи, за да контролират нивата на глюкоза.</b>", unsafe_allow_html=True)
@@ -286,8 +299,9 @@ if LOGGED_IN == True:
 
             col1, col2, col3  = st.columns([0.5,1,0.5])
             col4,col5 = st.columns([1.6,0.1])
-            col6,col7,col8 = st.columns([0.2,1,0.2])
-            col9,col10 = st.columns([1.6,0.1])
+            col6,col7,col8 = st.columns([1,1,1])
+            col9,col10,col11 = st.columns([0.2,1,0.2])
+            col12,col113 = st.columns([1.6,0.1])
             with col2:
                     if st.button("Резулат за заболяване на сърцето"):
                         if cp is None:
@@ -302,9 +316,20 @@ if LOGGED_IN == True:
                             else:
                                 with col4:
                                     st.markdown("<p style='text-align: center; color: #F75D59;background-color:white;border-radius:25px;border: 2px solid #F75D59   ;'>Пациентът няма заболяване на сърцето</p>", unsafe_allow_html=True)
-            with col7:
+            modal = Modal(key = "Demo",title = "Тестване", padding = -10, max_width= 700)
+            with col7:    
+                info = st.button("Как се използва?")
+            if info:
+                modal.open()
+            if modal.is_open():
+                st.session_state.info = True
+                with modal.container():
+                    st.markdown("<p style='text-align: center; color: black;'>В секцията 'Тествай се' можете да видите прогнозата на нашите AI(Изкуствен Интелект) модели по вашите данни за различни заболявания</p>", unsafe_allow_html=True)
+                    st.markdown("<p style='text-align: center; color: black;'>След като сте прикачили вашите изследвания в секцията 'Профил', натиснете бутона за резултат.</p>", unsafe_allow_html=True)
+                    st.image(r'D:\AIDoc\AIDoc\images\diseases.png')
+            with col10:
                 st.markdown("<h1 style=' color: black;'> " "Заболяване на сърцето</h1>", unsafe_allow_html=True)
-            with col9:
+            with col12:
                     st.markdown("<h2 style=' color: black;text-align: center;'> " "Исхемична болест на сърцето (ИБС)</h1>", unsafe_allow_html=True)
                     st.markdown("<b style='text-align: justify;color:black;text-decoration-style: solid;'>- Дефиниция: Стеснени или блокирани сърдечни артерии.</b>", unsafe_allow_html=True)
                     st.markdown("<b style='text-align: justify;color:black;text-decoration-style: solid;'>- Симптоми: Болка в гърдите, умора, задух.</b>", unsafe_allow_html=True)
@@ -328,8 +353,9 @@ if LOGGED_IN == True:
 
             col1, col2, col3  = st.columns([0.57,1,0.5])
             col4,col5 = st.columns([1.8,0.1])
-            col6,col7,col8 = st.columns([0.2,1,0.2])
-            col9,col10 = st.columns([1.6,0.1])
+            col6,col7,col8 = st.columns([1,1,1])
+            col9,col10,col11 = st.columns([0.2,1,0.2])
+            col12,col113 = st.columns([1.6,0.1])
 
             with col2:
                 if st.button("Резулат за болест на черния дроб"):
@@ -341,7 +367,7 @@ if LOGGED_IN == True:
                         input_data = (age, TotalBilirubin, DirectBilirubin, AlkalinePhosphatase, AlanineAminotransferase, AspartateAminotransferase, TotalProtein, Albumin, AlbuminAndGlobulinRatio)
                         input_data_as_numpy_array= np.asarray(input_data)
                         input_data_reshaped = input_data_as_numpy_array.reshape(1,-1)
-                        liver_prediction = liver_model.predict(input_data_reshaped)
+                        liver_prediction = liver_disease_model.predict(input_data_reshaped)
                         print(liver_prediction)
                         if (liver_prediction[0] == 1):
                             with col4:
@@ -349,15 +375,38 @@ if LOGGED_IN == True:
                         else:
                             with col4:
                                 st.markdown("<p style='text-align: center; color: #F75D59;background-color:white;border-radius:25px;border: 2px solid #F75D59   ;'>Пациентът няма заболяване на черния дроб</p>", unsafe_allow_html=True)
-            with col7:
+            modal = Modal(key = "Demo",title = "Тестване", padding = -10, max_width= 700)
+            with col7:    
+                info = st.button("Как се използва?")
+            if info:
+                modal.open()
+            if modal.is_open():
+                st.session_state.info = True
+                with modal.container():
+                    st.markdown("<p style='text-align: center; color: black;'>В секцията 'Тествай се' можете да видите прогнозата на нашите AI(Изкуствен Интелект) модели по вашите данни за различни заболявания</p>", unsafe_allow_html=True)
+                    st.markdown("<p style='text-align: center; color: black;'>След като сте прикачили вашите изследвания в секцията 'Профил', натиснете бутона за резултат.</p>", unsafe_allow_html=True)
+                    st.image(r'D:\AIDoc\AIDoc\images\diseases.png')
+            with col10:
                 st.markdown("<h1 style='text-align: center; color: black;'> " "Заболяване на черния дроб</h1>", unsafe_allow_html=True)
-            with col9:
+            with col12:
                     st.markdown("<b style='text-align: justify;color:black;text-decoration-style: solid;'>Заболяването на черния дроб е сериозно състояние, което може да засегне функциите на черния дроб и да предизвика различни проблеми със здравето. Разбирането на факторите и начините за превенция и управление може да бъде от съществено значение.</b>", unsafe_allow_html=True)
                     st.markdown("<b style='text-align: justify;color:black;text-decoration-style: solid;'>След провеждане на необходимите изследвания и анализ, може да се направи заключение относно състоянието на черния дроб. Важно е да се отбележи, че самоцензурното лечение и контрол на рисковите фактори също играят важна роля в поддържането на здравето на черния дроб и предотвратяването на заболявания.</b>", unsafe_allow_html=True)
 
         
         if selected == "Намери лекарство":
             st.title('Намери своето лекарство')
+            modal = Modal(key = "Demo",title = "Намери лекарство", padding = -10, max_width= 700)
+            info = st.button("Как се използва?")
+            if info:
+                modal.open()
+            if modal.is_open():
+                st.session_state.info = True
+                with modal.container():
+                    st.markdown("<p style='text-align: center; color: black;'>В секцията 'Намери лекарство' можете да си изваждате информация за дадено лекарство и наличието му в различни аптеки</p>", unsafe_allow_html=True)
+                    st.markdown("<p style='text-align: center; color: black;'>Въведете в търсачката име на лекарство и ще ви изкара малко информация за него както и снимка.</p>", unsafe_allow_html=True)
+                    st.image(r'D:\AIDoc\AIDoc\images\medication.png')
+                    st.markdown("<p style='text-align: center; color: black;'>По-надол ще видите карта, на която са изобразени аптеки, които имат в наличност даденото лекарство. Ако натиснете с мишката върху някоя от тях ще ви изкара нейното име и адрес.</p>", unsafe_allow_html=True)
+                    st.image(r'D:\AIDoc\AIDoc\images\map.png')
             medication_name = st.text_input('Въведете името на лекарството')
             if st.button('Потърси'):
                 c = conn.cursor()
@@ -407,6 +456,16 @@ if LOGGED_IN == True:
                     st.write('Не бяха намерени аптеки с {} в наличност.'.format(medication_name))
         if selected == "Запиши си час онлайн":
             st.title('Намерете лекар и запазете час за преглед')
+            modal = Modal(key = "Demo",title = "Запиши си час", padding = -10, max_width= 700)
+            info = st.button("Как се използва?")
+            if info:
+                modal.open()
+            if modal.is_open():
+                st.session_state.info = True
+                with modal.container():
+                    st.markdown("<p style='text-align: center; color: black;'>В секцията 'Запиши си час онлайн' можете да си запазвате час с нашите лекари, като имате възможността да филтрирате вашето търсене на лекар според града и специалността</p>", unsafe_allow_html=True)
+                    st.markdown("<p style='text-align: center; color: black;'>След като си изберете лекаря, ако има свободни часове на датата, която сте посочили, ще се изобразят отляво. Натиснете желания от вас час и натиснете бутона 'Запази час'.</p>", unsafe_allow_html=True)
+                    st.image(r'D:\AIDoc\AIDoc\images\appointment.png')
             col1,col2,col3 = st.columns([4,0.5,4])
             with col1:
                 filtered = False
