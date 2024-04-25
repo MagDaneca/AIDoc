@@ -23,7 +23,7 @@ from streamlit_modal import Modal
 
 db_path = st.secrets["db_secret"]
 
-st.set_page_config(page_title="AIDoc", page_icon="AIDoc/images/logo.png", layout="centered")
+st.set_page_config(page_title="AIDoc", page_icon=r"AIDoc/images/logo.png", layout="centered")
 
 def get_working_hours(username,day):
     conn = create_connection(db_path)
@@ -104,7 +104,7 @@ if LOGGED_IN == True:
         with st.sidebar:
             container = st.container (border=True)
             with container:
-                st.image('AIDoc/images/logo.png', width=200)
+                st.image(r'AIDoc/images/logo.png', width=200)
                 selected = option_menu('AIDoc',
                                 
                                 [
