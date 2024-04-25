@@ -280,7 +280,7 @@ if LOGGED_IN == True:
                 with modal.container():
                     st.markdown("<p style='text-align: center; color: black;'>В секцията 'Тествай се' можете да видите прогнозата на нашите AI(Изкуствен Интелект) модели по вашите данни за различни заболявания</p>", unsafe_allow_html=True)
                     st.markdown("<p style='text-align: center; color: black;'>След като сте прикачили вашите изследвания в секцията 'Профил', натиснете бутона за резултат.</p>", unsafe_allow_html=True)
-                    st.image(r'AIDoc\images\diseases.png')                     
+                    st.image(r'AIDoc/images/diseases.png')                     
             with col10:
                 st.markdown("<h1 style=' color: black;'> " "Диабет</h1>", unsafe_allow_html=True)
             with col12:
@@ -326,7 +326,7 @@ if LOGGED_IN == True:
                 with modal.container():
                     st.markdown("<p style='text-align: center; color: black;'>В секцията 'Тествай се' можете да видите прогнозата на нашите AI(Изкуствен Интелект) модели по вашите данни за различни заболявания</p>", unsafe_allow_html=True)
                     st.markdown("<p style='text-align: center; color: black;'>След като сте прикачили вашите изследвания в секцията 'Профил', натиснете бутона за резултат.</p>", unsafe_allow_html=True)
-                    st.image(r'AIDoc\images\diseases.png')
+                    st.image(r'AIDoc/images/diseases.png')
             with col10:
                 st.markdown("<h1 style=' color: black;'> " "Заболяване на сърцето</h1>", unsafe_allow_html=True)
             with col12:
@@ -385,7 +385,7 @@ if LOGGED_IN == True:
                 with modal.container():
                     st.markdown("<p style='text-align: center; color: black;'>В секцията 'Тествай се' можете да видите прогнозата на нашите AI(Изкуствен Интелект) модели по вашите данни за различни заболявания</p>", unsafe_allow_html=True)
                     st.markdown("<p style='text-align: center; color: black;'>След като сте прикачили вашите изследвания в секцията 'Профил', натиснете бутона за резултат.</p>", unsafe_allow_html=True)
-                    st.image(r'AIDoc\images\diseases.png')
+                    st.image(r'AIDoc/images/diseases.png')
             with col10:
                 st.markdown("<h1 style='text-align: center; color: black;'> " "Заболяване на черния дроб</h1>", unsafe_allow_html=True)
             with col12:
@@ -404,9 +404,9 @@ if LOGGED_IN == True:
                 with modal.container():
                     st.markdown("<p style='text-align: center; color: black;'>В секцията 'Намери лекарство' можете да си изваждате информация за дадено лекарство и наличието му в различни аптеки</p>", unsafe_allow_html=True)
                     st.markdown("<p style='text-align: center; color: black;'>Въведете в търсачката име на лекарство и ще ви изкара малко информация за него както и снимка.</p>", unsafe_allow_html=True)
-                    st.image(r'AIDoc\images\medication.png')
+                    st.image(r'AIDoc/images/medication.png')
                     st.markdown("<p style='text-align: center; color: black;'>По-надол ще видите карта, на която са изобразени аптеки, които имат в наличност даденото лекарство. Ако натиснете с мишката върху някоя от тях ще ви изкара нейното име и адрес.</p>", unsafe_allow_html=True)
-                    st.image(r'AIDoc\images\map.png')
+                    st.image(r'AIDoc/images/map.png')
             medication_name = st.text_input('Въведете името на лекарството')
             if st.button('Потърси'):
                 c = conn.cursor()
@@ -465,7 +465,7 @@ if LOGGED_IN == True:
                 with modal.container():
                     st.markdown("<p style='text-align: center; color: black;'>В секцията 'Запиши си час онлайн' можете да си запазвате час с нашите лекари, като имате възможността да филтрирате вашето търсене на лекар според града и специалността</p>", unsafe_allow_html=True)
                     st.markdown("<p style='text-align: center; color: black;'>След като си изберете лекаря, ако има свободни часове на датата, която сте посочили, ще се изобразят отляво. Натиснете желания от вас час и натиснете бутона 'Запази час'.</p>", unsafe_allow_html=True)
-                    st.image(r'AIDoc\images\appointment.png')
+                    st.image(r'AIDoc/images/appointment.png')
             col1,col2,col3 = st.columns([4,0.5,4])
             with col1:
                 filtered = False
