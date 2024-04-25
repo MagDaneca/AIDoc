@@ -66,7 +66,7 @@ conn = create_connection(db_path)
 cursor = conn.cursor()
 init_session_state()
 
-diabetes_model = pickle.load(open(r'AIDoc\Trained models\diabetes_model.sav'))
+diabetes_model = pickle.load(open(rb'AIDoc/Trained models/diabetes_model.sav'))
 liver_disease_model = pickle.load(open(rb'AIDoc\Trained models\liver_disease_model.sav', 'rb'))
 heart_disease_model = pickle.load(open(rb'AIDoc\Trained models\heart_disease_model.sav','rb'))
 
