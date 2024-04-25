@@ -241,7 +241,7 @@ if LOGGED_IN == True:
                 st.session_state.info = True
                 with modal.container():
                     st.markdown("<p style='text-align: center; color: black;'>В секцията профил Вие трябва да въведете вашите данни:</p>", unsafe_allow_html=True)
-                    st.image(r'AIDoc\images\profile.png')
+                    st.image(r'AIDoc/images/profile.png')
                     st.markdown("<p style='text-align: center; color: black;'>При натискане на бутона 'Запази' Вашите данни ще бъдат запазени в системата, като винаги можете да ги промените чрез бутона 'Променете вашите данни'.</p>", unsafe_allow_html=True)
                     st.markdown("<p style='text-align: center; color: black;'>Тук можете да прикачите вашите лабораторни изследвания в PDF формат и да продължите напред към тестовете:</p>", unsafe_allow_html=True)
                     st.image(r'AIDoc\images\pdf.png')
