@@ -88,53 +88,24 @@ def create_custom_markdown_card(text, image_url=None):
     st.write("")
     st.write("")
 
-def apply_white_theme():
-    # Custom CSS to force a white theme regardless of system theme
-    custom_css = """
-        <style>
-            /* Set background color of the entire app to white */
-            body {
-                background-color: white !important;
-                color: black !important;  /* Make text black for readability */
-            }
-         </style>
-    """
-    # Apply the custom CSS to the app
-    st.markdown(custom_css, unsafe_allow_html=True)
 
 def create_basic_custom_markdown_card(text, image_url=None):
-    # Define custom CSS for styling
-    custom_css = """
-        <style>
-            .card {
-                display: flex;
-                align-items: center;
-                background-color: transparent; /* Dark background for contrast */
-                padding: 15px;
-                border-radius: 10px;
-                box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
-                margin-bottom: 10px;
-            }
-            .card-content {
-                color: white;  /* Make text white */
-                font-size: 16px;
-            }
-        </style>
-    """
-    
     # Apply custom CSS styles to the card
     st.markdown(custom_css, unsafe_allow_html=True)
     
     text_lines = text.split('\n')
+
     formatted_text = '<br>'.join(text_lines)
     
     # Create the card
     st.markdown(
-        f"""
-        <div class="card">
+        """
+        <div class="card" style="display: flex; align-items: center;">
             <div style="flex: 1;">
                 <div class="card-content">
-                    {formatted_text}
+                """
+        + formatted_text
+        + """
                 </div>
             </div>
             """
@@ -148,6 +119,7 @@ def create_basic_custom_markdown_card(text, image_url=None):
     st.write("")
     st.write("")
     st.write("")
+
 
 def init_session_state():
     if 'data' not in st.session_state:
