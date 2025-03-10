@@ -65,7 +65,6 @@ hide_streamlit_style = """
             """
 st.markdown(hide_streamlit_style, unsafe_allow_html=True)
 
-st.set_page_config(page_title="AIDoc", page_icon=r"AIDoc/images/logo.png", layout="centered", theme="light")
 
 conn = create_connection(db_path)
 cursor = conn.cursor()
