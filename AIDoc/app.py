@@ -21,17 +21,7 @@ import tensorflow as tf
 import numpy as np
 from streamlit_modal import Modal
 
-st.markdown(
-    """
-    <style>
-        html, body, [data-testid="stAppViewContainer"] {
-            background-color: white !important;
-            color: black !important;
-        }
-    </style>
-    """,
-    unsafe_allow_html=True
-)
+
 
 db_path = st.secrets["db_secret"]
 
