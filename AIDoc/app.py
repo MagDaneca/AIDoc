@@ -55,7 +55,7 @@ def load_css(file_path):
     with open(file_path, "r") as f:
         st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
 
-css_path = Path(r'AIDoc/styles.css')  # Corrected pathlib usage
+css_path = Path(r'AIDoc/styles.css') 
 load_css(css_path)
 
 def init_session_state():
