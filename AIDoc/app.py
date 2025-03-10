@@ -340,7 +340,7 @@ if LOGGED_IN == True:
                     st.markdown("<p style='text-align: center; color: black;'>След като сте прикачили вашите изследвания в секцията 'Профил', натиснете бутона за резултат.</p>", unsafe_allow_html=True)
                     st.image(r'AIDoc/images/diseases.png')
             with col10:
-                st.markdown("<h1 style=' color: black;'> " "Заболяване на сърцето</h1>", unsafe_allow_html=True)
+                st.markdown("<h1 style=''> " "Заболяване на сърцето</h1>", unsafe_allow_html=True)
             with col12:
                     st.markdown("<h2 style='text-align: center;'> " "Исхемична болест на сърцето (ИБС)</h1>", unsafe_allow_html=True)
                     st.markdown("<b style='text-align: justify;text-decoration-style: solid;'>- Дефиниция: Стеснени или блокирани сърдечни артерии.</b>", unsafe_allow_html=True)
@@ -399,10 +399,10 @@ if LOGGED_IN == True:
                     st.markdown("<p style='text-align: center; color: black;'>След като сте прикачили вашите изследвания в секцията 'Профил', натиснете бутона за резултат.</p>", unsafe_allow_html=True)
                     st.image(r'AIDoc/images/diseases.png')
             with col10:
-                st.markdown("<h1 style='text-align: center; color: black;'> " "Заболяване на черния дроб</h1>", unsafe_allow_html=True)
+                st.markdown("<h1 style='text-align: center;'> " "Заболяване на черния дроб</h1>", unsafe_allow_html=True)
             with col12:
-                    st.markdown("<b style='text-align: justify;color:black;text-decoration-style: solid;'>Заболяването на черния дроб е сериозно състояние, което може да засегне функциите на черния дроб и да предизвика различни проблеми със здравето. Разбирането на факторите и начините за превенция и управление може да бъде от съществено значение.</b>", unsafe_allow_html=True)
-                    st.markdown("<b style='text-align: justify;color:black;text-decoration-style: solid;'>След провеждане на необходимите изследвания и анализ, може да се направи заключение относно състоянието на черния дроб. Важно е да се отбележи, че самоцензурното лечение и контрол на рисковите фактори също играят важна роля в поддържането на здравето на черния дроб и предотвратяването на заболявания.</b>", unsafe_allow_html=True)
+                    st.markdown("<b style='text-align: justify;text-decoration-style: solid;'>Заболяването на черния дроб е сериозно състояние, което може да засегне функциите на черния дроб и да предизвика различни проблеми със здравето. Разбирането на факторите и начините за превенция и управление може да бъде от съществено значение.</b>", unsafe_allow_html=True)
+                    st.markdown("<b style='text-align: justify;text-decoration-style: solid;'>След провеждане на необходимите изследвания и анализ, може да се направи заключение относно състоянието на черния дроб. Важно е да се отбележи, че самоцензурното лечение и контрол на рисковите фактори също играят важна роля в поддържането на здравето на черния дроб и предотвратяването на заболявания.</b>", unsafe_allow_html=True)
 
         
         if selected == "Намери лекарство":
