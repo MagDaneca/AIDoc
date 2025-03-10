@@ -84,16 +84,6 @@ LOGGED_IN = __login__obj.build_login_ui()
 extracted_text = ""
 session()
 
-def create_basic_custom_markdown_card(content):
-    st.markdown(
-        f"""
-        <div style="background-color: transparent; padding: 10px; border-radius: 5px;">
-            <p style="color: white; font-size: 16px;">{content}</p>
-        </div>
-        """,
-        unsafe_allow_html=True
-    )
-
 if LOGGED_IN == True:
     username = __login__obj.cookies['__streamlit_login_signup_ui_username__']
     role_user = get_user_role(conn,username)
@@ -170,6 +160,7 @@ if LOGGED_IN == True:
                         f"Име: {first_name}\n" 
                         f"Фамилия: {second_name}\n"
                         f"Телефонен номер: {tel_num}\n"
+                        f"\n"
                         f"\n"
                     )
                 with col2:
