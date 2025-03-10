@@ -347,9 +347,9 @@ if LOGGED_IN == True:
                     st.markdown("<b style='text-align: justify;text-decoration-style: solid;'>- Симптоми: Болка в гърдите, умора, задух.</b>", unsafe_allow_html=True)
                     st.markdown("<b style='text-align: justify;text-decoration-style: solid;'>- Фактори за риск: Високо кръвно налягане, диабет, курене.</b>", unsafe_allow_html=True)
                     st.markdown("<h2 style=' text-align: center;'> " "Сърдечна недостатъчност</h1>", unsafe_allow_html=True)
-                    st.markdown"<b style='text-align: justify;text-decoration-style: solid;'>- Дефиниция: Неспособност на сърцето да изкачи достатъчно кръв.</b>", unsafe_allow_html=True
-                    st.markdown"<b style='text-align: justify;text-decoration-style: solid;'>- Симптоми: Задух, оток, умора.</b>", unsafe_allow_html=True
-                    st.markdown"<b style='text-align: justify;text-decoration-style: solid;'>- Фактори за риск: Исхемична болест, високо кръвно налягане.</b>", unsafe_allow_html=True
+                    st.markdown("<b style='text-align: justify;text-decoration-style: solid;'>- Дефиниция: Неспособност на сърцето да изкачи достатъчно кръв.</b>", unsafe_allow_html=True)
+                    st.markdown("<b style='text-align: justify;text-decoration-style: solid;'>- Симптоми: Задух, оток, умора.</b>", unsafe_allow_html=True)
+                    st.markdown("<b style='text-align: justify;text-decoration-style: solid;'>- Фактори за риск: Исхемична болест, високо кръвно налягане.</b>", unsafe_allow_html=True)
                     st.markdown("<h2 style=' text-align: center;'> " "Аритмии</h1>", unsafe_allow_html=True)
                     st.markdown("<b style='text-align: justify;text-decoration-style: solid;'>- Дефиниция: Нереден сърдечен ритъм.</b>", unsafe_allow_html=True)
                     st.markdown("<b style='text-align: justify;text-decoration-style: solid;'>- Симптоми: Палипси, главоболие, болка в гърдите.</b>", unsafe_allow_html=True)
