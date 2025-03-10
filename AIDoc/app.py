@@ -90,7 +90,7 @@ st.markdown(
     """
     <style>
         html, body, [data-testid="stAppViewContainer"] {
-            color: black !important;
+            color: white !important;
         }
     </style>
     """,
