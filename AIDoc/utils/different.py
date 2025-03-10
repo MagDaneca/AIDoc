@@ -88,6 +88,20 @@ def create_custom_markdown_card(text, image_url=None):
     st.write("")
     st.write("")
 
+def apply_white_theme():
+    # Custom CSS to force a white theme regardless of system theme
+    custom_css = """
+        <style>
+            /* Set background color of the entire app to white */
+            body {
+                background-color: white !important;
+                color: black !important;  /* Make text black for readability */
+            }
+         </style>
+    """
+    # Apply the custom CSS to the app
+    st.markdown(custom_css, unsafe_allow_html=True)
+
 def create_basic_custom_markdown_card(text, image_url=None):
     # Define custom CSS for styling
     custom_css = """

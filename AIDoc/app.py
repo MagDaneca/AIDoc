@@ -109,6 +109,7 @@ if LOGGED_IN == True:
         
     save_user_role(conn,username,role_user)
     if role_user == 1:
+        apply_white_theme()
         option1 = 'Профил'
         option2 = "Вашите часове"
         option3 = 'Тествай се'
