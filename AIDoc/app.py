@@ -55,7 +55,7 @@ def load_css(file_path):
     with open(file_path) as f:
         st.html(f"<style>{f.read()}</style>")
 
-css_path = pathlib_Path(r'C:\Users\MSI\Desktop\newdoc\AIDoc\AIDoc\styles.css')
+css_path = pathlib_Path(r'AIDoc/styles.css')
 load_css(css_path)
 
 def init_session_state():
