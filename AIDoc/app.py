@@ -20,7 +20,7 @@ from streamlit_folium import folium_static
 import tensorflow as tf
 import numpy as np
 from streamlit_modal import Modal
-import pathlib
+from pathlib import Path
 
 
 
@@ -52,10 +52,10 @@ def get_working_hours(username,day):
 
 
 def load_css(file_path):
-    with open(file_path) as f:
-        st.html(f"<style>{f.read()}</style>")
+    with open(file_path, "r") as f:
+        st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
 
-css_path = pathlib_Path(r'C:\Users\MSI\Desktop\newdoc\AIDoc\AIDoc\styles.css')
+css_path = Path(r'AIDoc/styles.css')  # Corrected pathlib usage
 load_css(css_path)
 
 def init_session_state():
