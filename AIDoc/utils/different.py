@@ -61,19 +61,69 @@ custom_css = """
 
 
 def create_custom_markdown_card(text, image_url=None):
+    # Define custom CSS to handle light and dark themes and bubble style
+    custom_css = """
+        <style>
+            /* General card styles */
+            .card {
+                display: flex;
+                align-items: center;
+                background-color: transparent; /* Transparent background */
+                padding: 20px;
+                border-radius: 30px; /* Rounded corners for the bubble effect */
+                box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Slight shadow to give depth */
+                margin-bottom: 15px;
+                transition: all 0.3s ease; /* Smooth transition */
+            }
+            
+            /* Text styling for different themes */
+            .card-content {
+                font-size: 16px;
+                padding: 10px;
+                margin: 0;
+                border-radius: 20px;
+            }
+
+            /* Force text color to black for light theme */
+            @media (prefers-color-scheme: light) {
+                .card-content {
+                    color: black !important; /* Force black text for light theme */
+                }
+            }
+
+            /* Dark theme: Text color light */
+            @media (prefers-color-scheme: dark) {
+                .card-content {
+                    color: lightgray !important;  /* Light color for dark mode */
+                }
+            }
+
+            /* Hover effect to make the card pop up a bit */
+            .card:hover {
+                box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2); /* Increase shadow on hover */
+                transform: translateY(-4px); /* Slight lift on hover */
+            }
+
+            /* Title styling */
+            .card-title {
+                font-weight: bold;
+                margin-bottom: 10px;
+                font-size: 18px;
+            }
+        </style>
+    """
+    
     # Apply custom CSS styles to the card
     st.markdown(custom_css, unsafe_allow_html=True)
     
     # Create the card
     st.markdown(
-        """
-        <div class="card" style="display: flex; align-items: center;">
+        f"""
+        <div class="card">
             <div style="flex: 1;">
                 <div class="card-title">Информация</div>
                 <div class="card-content">
-                """
-        + text
-        + """
+                    {text}
                 </div>
             </div>
             """
