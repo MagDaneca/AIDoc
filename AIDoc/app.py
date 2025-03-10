@@ -86,6 +86,17 @@ LOGGED_IN = __login__obj.build_login_ui()
 extracted_text = ""
 session()
 
+st.markdown(
+    """
+    <style>
+        [data-testid="stThemeToggle"] {
+            display: none !important;
+        }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
 if LOGGED_IN == True:
     username = __login__obj.cookies['__streamlit_login_signup_ui_username__']
     role_user = get_user_role(conn,username)
