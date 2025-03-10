@@ -95,15 +95,7 @@ def create_basic_custom_markdown_card(text, image_url=None):
     custom_css = """
         <style>
             /* General card styles */
-            .card {
-                display: flex;
-                align-items: center;
-                background-color: transparent; /* Transparent background */
-                padding: 15px;
-                border-radius: 10px;
-                box-shadow: none; /* Remove shadow if not needed */
-                margin-bottom: 10px;
-            }
+            
             
             /* Text styling for different themes */
             .card-content {
