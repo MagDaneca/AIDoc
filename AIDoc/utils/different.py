@@ -91,6 +91,7 @@ def create_custom_markdown_card(text, image_url=None):
 def create_basic_custom_markdown_card(text, image_url=None):
     # Define custom CSS for styling
     custom_css = """
+        <style>
             .card-content {
                 color: white;  /* Make text white */
                 font-size: 16px;
