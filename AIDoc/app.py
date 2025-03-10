@@ -21,6 +21,18 @@ import tensorflow as tf
 import numpy as np
 from streamlit_modal import Modal
 
+st.markdown(
+    """
+    <style>
+        html, body, [data-testid="stAppViewContainer"] {
+            background-color: white !important;
+            color: black !important;
+        }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
 db_path = st.secrets["db_secret"]
 
 st.set_page_config(page_title="AIDoc", page_icon=r"AIDoc/images/logo.png", layout="centered")
@@ -160,7 +172,6 @@ if LOGGED_IN == True:
                         f"Име: {first_name}\n" 
                         f"Фамилия: {second_name}\n"
                         f"Телефонен номер: {tel_num}\n"
-                        f"\n"
                         f"\n"
                     )
                 with col2:
