@@ -95,12 +95,23 @@ def create_basic_custom_markdown_card(text, image_url=None):
     custom_css = """
         <style>
             /* General card styles */
-            
+            .card {
+                display: flex;
+                align-items: center;
+                background-color: transparent; /* Transparent background */
+                padding: 20px;
+                border-radius: 30px; /* Rounded corners for the bubble effect */
+                box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Slight shadow to give depth */
+                margin-bottom: 15px;
+                transition: all 0.3s ease; /* Smooth transition */
+            }
             
             /* Text styling for different themes */
             .card-content {
                 font-size: 16px;
                 padding: 10px;
+                margin: 0;
+                border-radius: 20px;
             }
 
             /* Light theme: Text color white */
@@ -115,6 +126,12 @@ def create_basic_custom_markdown_card(text, image_url=None):
                 .card-content {
                     color: lightgray !important;  /* Light color for dark mode */
                 }
+            }
+
+            /* Hover effect to make the card pop up a bit */
+            .card:hover {
+                box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2); /* Increase shadow on hover */
+                transform: translateY(-4px); /* Slight lift on hover */
             }
         </style>
     """
