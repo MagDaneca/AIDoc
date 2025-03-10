@@ -60,6 +60,7 @@ hide_streamlit_style = """
             <style>
             [data-testid="stToolbar"] {visibility: hidden !important;}
             footer {visibility: hidden !important;}
+            body { background-color: white; color: black; }
             </style>
             """
 st.markdown(hide_streamlit_style, unsafe_allow_html=True)
@@ -86,16 +87,6 @@ LOGGED_IN = __login__obj.build_login_ui()
 extracted_text = ""
 session()
 
-st.markdown(
-    """
-    <style>
-        html, body, [data-testid="stAppViewContainer"] {
-            color: white !important;
-        }
-    </style>
-    """,
-    unsafe_allow_html=True
-)
 
 if LOGGED_IN == True:
     username = __login__obj.cookies['__streamlit_login_signup_ui_username__']
