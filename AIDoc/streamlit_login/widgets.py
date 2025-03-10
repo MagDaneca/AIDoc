@@ -228,7 +228,7 @@ class __login__:
 
                 if email_exists_check == True:
                     random_password = generate_random_passwd()
-                    send_passwd_in_email(self.auth_token, username_forgot_passwd, email_forgot_passwd, self.company_name, random_password)
+                    send_passwd_in_email(self.auth_token, username_forgot_passwd, email_forgot_passwd, random_password)
                     change_passwd(email_forgot_passwd, random_password)
                     st.success("Временна парола е изпратена успешно!")
 
