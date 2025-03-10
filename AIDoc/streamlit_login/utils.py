@@ -1,6 +1,7 @@
 import re
 import json
 import courier
+from trycourier import Courier
 import secrets
 from argon2 import PasswordHasher
 import requests
@@ -170,7 +171,7 @@ def send_passwd_in_email(auth_token: str, username_forgot_passwd: str, email_for
     """
     Triggers an email to the user containing the randomly generated password.
     """
-    client = courier(auth_token = auth_token)
+    client = Courier(auth_token = auth_token)
 
     resp = client.send_message(
     message={
