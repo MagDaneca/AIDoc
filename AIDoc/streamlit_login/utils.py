@@ -173,7 +173,7 @@ def send_passwd_in_email(auth_token: str, username_forgot_passwd: str, email_for
     """
     client = Courier(authorization_token = "pk_prod_TSABQG9T12M5J7P5Q91W4CK2HN75")
 
-    resp = client.send(
+    resp = client.send_message(
     message={
         "to": {
         "email": email_forgot_passwd
