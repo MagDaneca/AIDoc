@@ -174,18 +174,16 @@ def send_passwd_in_email(auth_token: str, username_forgot_passwd: str, email_for
     client = Courier(authorization_token = "pk_prod_TSABQG9T12M5J7P5Q91W4CK2HN75")
 
     resp = client.send(
-    message={
-        "to": {
-        "email": email_forgot_passwd
-        },
-        "content": {
-        "title": company_name + ": Login Password!",
-        "body": "Hi! " + username_forgot_passwd + "," + "\n" + "\n" + "Your temporary login password is: " + random_password  + "\n" + "\n" + "{{info}}"
-        },
-        "data":{
-        "info": "Please reset your password at the earliest for security reasons."
-        }
-    }
+    message=courier.ContentMessage(
+        to=courier.UserRecipient(
+        email = email_forgot_passwd
+        ),
+        content=courier.ElementalContentSugar(
+        title= company_name + ": Login Password!",
+        body = "Hi! " + username_forgot_passwd + "," + "\n" + "\n" + "Your temporary login password is: " + random_password  + "\n" + "\n" + "{{info}}"
+        ),
+        routing=courier.Routing(method="all", channels=["inbox", "email"]),
+    )
     )
 
 def send_doc_email(auth_token: str, email_doc: str, user_name: str,specialty: str,city: str,username: str) -> None:
