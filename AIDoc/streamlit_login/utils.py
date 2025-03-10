@@ -5,7 +5,7 @@ from courier.client import Courier
 import secrets
 from argon2 import PasswordHasher
 import requests
-
+from datetime import datetime, timedelta
 
 ph = PasswordHasher() 
 
@@ -167,24 +167,27 @@ def generate_random_passwd() -> str:
     return secrets.token_urlsafe(password_length)
 
 
-def send_passwd_in_email(auth_token: str, username_forgot_passwd: str, email_forgot_passwd: str, company_name: str, random_password: str) -> None:
-    """
-    Triggers an email to the user containing the randomly generated password.
-    """
-    client = Courier(authorization_token = "pk_prod_TSABQG9T12M5J7P5Q91W4CK2HN75")
+def send_passwd_in_email(auth_token: str, email_forgot_passwd: str, username_forgot_passwd: str, random_password: str):
+    client = Courier(authorization_token="pk_prod_TSABQG9T12M5J7P5Q9ZCMN4XPT5N")
+    
+    # Generate expiration time (e.g., 24 hours from now)
+    expiration_time = datetime.now() + timedelta(hours=24)
+    expiration_iso = expiration_time.isoformat()
 
     resp = client.send(
-    message=courier.ContentMessage(
-        to=courier.UserRecipient(
-        email = email_forgot_passwd
-        ),
-        content=courier.ElementalContentSugar(
-        title= company_name + ": Login Password!",
-        body = "Hi! " + username_forgot_passwd + "," + "\n" + "\n" + "Your temporary login password is: " + random_password  + "\n" + "\n" + "{{info}}"
-        ),
-        routing=courier.Routing(method="all", channels=["inbox", "email"]),
+        message=courier.ContentMessage(
+            to=courier.UserRecipient(
+                email=email_forgot_passwd
+            ),
+            content={
+                'title': 'Забравена парола',
+                'body': f'Потребителско име: {username_forgot_passwd}\nВременна парола: {random_password}\nПаролата изтича на: {expiration_iso}'
+            },
+            # If the API expects a top-level 'expiration' field
+            expiration=expiration_iso
+        )
     )
-    )
+    return resp
 
 def send_doc_email(auth_token: str, email_doc: str, user_name: str,specialty: str,city: str,username: str) -> None:
     """
