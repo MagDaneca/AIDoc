@@ -89,8 +89,9 @@ session()
 st.markdown(
     """
     <style>
-        [data-testid="stThemeToggle"] {
-            display: none !important;
+        html, body, [data-testid="stAppViewContainer"] {
+            background-color: white !important;
+            color: black !important;
         }
     </style>
     """,
