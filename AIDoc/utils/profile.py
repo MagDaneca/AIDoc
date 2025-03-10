@@ -4,7 +4,7 @@ from streamlit_login import __login__
 
 def profile_page(conn, username):
     col6,col7,col8 = st.columns([0.5,1,0.5])
-            with col7:
+        with col7:
                 st.title("Вашият Профил")
             output = '1'
             first_name = get_first_name(conn,username)
