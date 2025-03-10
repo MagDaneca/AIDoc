@@ -18,3 +18,4 @@ tensorflow==2.16.1
 keras==3.2.1
 streamlit-modal==0.1.2
 trycourier==6.0.1
+pathlib==1.0.1
