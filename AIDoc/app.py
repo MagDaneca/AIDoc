@@ -1,6 +1,6 @@
 from imports import *
 from streamlit_login import __login__
-from app.profile import *
+from app.profile import profile_page
 
 
 db_path = st.secrets["db_secret"]
