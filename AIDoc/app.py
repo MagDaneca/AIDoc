@@ -342,22 +342,22 @@ if LOGGED_IN == True:
             with col10:
                 st.markdown("<h1 style=' color: black;'> " "Заболяване на сърцето</h1>", unsafe_allow_html=True)
             with col12:
-                    st.markdown("<h2 style=' color: black;text-align: center;'> " "Исхемична болест на сърцето (ИБС)</h1>", unsafe_allow_html=True)
-                    st.markdown("<b style='text-align: justify;color:black;text-decoration-style: solid;'>- Дефиниция: Стеснени или блокирани сърдечни артерии.</b>", unsafe_allow_html=True)
-                    st.markdown("<b style='text-align: justify;color:black;text-decoration-style: solid;'>- Симптоми: Болка в гърдите, умора, задух.</b>", unsafe_allow_html=True)
-                    st.markdown("<b style='text-align: justify;color:black;text-decoration-style: solid;'>- Фактори за риск: Високо кръвно налягане, диабет, курене.</b>", unsafe_allow_html=True)
-                    st.markdown("<h2 style=' color: black;text-align: center;'> " "Сърдечна недостатъчност</h1>", unsafe_allow_html=True)
-                    st.markdown("<b style='text-align: justify;color:black;text-decoration-style: solid;'>- Дефиниция: Неспособност на сърцето да изкачи достатъчно кръв.</b>", unsafe_allow_html=True)
-                    st.markdown("<b style='text-align: justify;color:black;text-decoration-style: solid;'>- Симптоми: Задух, оток, умора.</b>", unsafe_allow_html=True)
-                    st.markdown("<b style='text-align: justify;color:black;text-decoration-style: solid;'>- Фактори за риск: Исхемична болест, високо кръвно налягане.</b>", unsafe_allow_html=True)
-                    st.markdown("<h2 style=' color: black;text-align: center;'> " "Аритмии</h1>", unsafe_allow_html=True)
-                    st.markdown("<b style='text-align: justify;color:black;text-decoration-style: solid;'>- Дефиниция: Нереден сърдечен ритъм.</b>", unsafe_allow_html=True)
-                    st.markdown("<b style='text-align: justify;color:black;text-decoration-style: solid;'>- Симптоми: Палипси, главоболие, болка в гърдите.</b>", unsafe_allow_html=True)
-                    st.markdown("<b style='text-align: justify;color:black;text-decoration-style: solid;'>- Фактори за риск: Възраст, сърдечна недостатъчност.</b>", unsafe_allow_html=True)
-                    st.markdown("<h2 style=' color: black;text-align: center;'> " "Заболяване на сърдечни клапи</h1>", unsafe_allow_html=True)
-                    st.markdown("<b style='text-align: justify;color:black;text-decoration-style: solid;'>- Дефиниция: Проблеми с функционирането на сърдечните клапи.</b>", unsafe_allow_html=True)
-                    st.markdown("<b style='text-align: justify;color:black;text-decoration-style: solid;'>- Симптоми: Задух, умора, палпитации.</b>", unsafe_allow_html=True)
-                    st.markdown("<b style='text-align: justify;color:black;text-decoration-style: solid;'>- Фактори за риск: Хирургични процедури на сърцето.</b>", unsafe_allow_html=True)
+                    st.markdown("<h2 style='text-align: center;'> " "Исхемична болест на сърцето (ИБС)</h1>", unsafe_allow_html=True)
+                    st.markdown("<b style='text-align: justify;text-decoration-style: solid;'>- Дефиниция: Стеснени или блокирани сърдечни артерии.</b>", unsafe_allow_html=True)
+                    st.markdown("<b style='text-align: justify;text-decoration-style: solid;'>- Симптоми: Болка в гърдите, умора, задух.</b>", unsafe_allow_html=True)
+                    st.markdown("<b style='text-align: justify;text-decoration-style: solid;'>- Фактори за риск: Високо кръвно налягане, диабет, курене.</b>", unsafe_allow_html=True)
+                    st.markdown("<h2 style=' text-align: center;'> " "Сърдечна недостатъчност</h1>", unsafe_allow_html=True)
+                    st.markdown"<b style='text-align: justify;text-decoration-style: solid;'>- Дефиниция: Неспособност на сърцето да изкачи достатъчно кръв.</b>", unsafe_allow_html=True
+                    st.markdown"<b style='text-align: justify;text-decoration-style: solid;'>- Симптоми: Задух, оток, умора.</b>", unsafe_allow_html=True
+                    st.markdown"<b style='text-align: justify;text-decoration-style: solid;'>- Фактори за риск: Исхемична болест, високо кръвно налягане.</b>", unsafe_allow_html=True
+                    st.markdown("<h2 style=' text-align: center;'> " "Аритмии</h1>", unsafe_allow_html=True)
+                    st.markdown("<b style='text-align: justify;text-decoration-style: solid;'>- Дефиниция: Нереден сърдечен ритъм.</b>", unsafe_allow_html=True)
+                    st.markdown("<b style='text-align: justify;text-decoration-style: solid;'>- Симптоми: Палипси, главоболие, болка в гърдите.</b>", unsafe_allow_html=True)
+                    st.markdown("<b style='text-align: justify;text-decoration-style: solid;'>- Фактори за риск: Възраст, сърдечна недостатъчност.</b>", unsafe_allow_html=True)
+                    st.markdown("<h2 style='text-align: center;'> " "Заболяване на сърдечни клапи</h1>", unsafe_allow_html=True)
+                    st.markdown("<b style='text-align: justify;text-decoration-style: solid;'>- Дефиниция: Проблеми с функционирането на сърдечните клапи.</b>", unsafe_allow_html=True)
+                    st.markdown("<b style='text-align: justify;text-decoration-style: solid;'>- Симптоми: Задух, умора, палпитации.</b>", unsafe_allow_html=True)
+                    st.markdown("<b style='text-align: justify;text-decoration-style: solid;'>- Фактори за риск: Хирургични процедури на сърцето.</b>", unsafe_allow_html=True)
                 
         
         if selected == 'Заболяване на черния дроб':
