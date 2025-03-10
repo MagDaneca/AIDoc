@@ -90,8 +90,7 @@ def create_custom_markdown_card(text, image_url=None):
 
 
 def create_basic_custom_markdown_card(text, image_url=None):
-    # Apply custom CSS styles to the card
-
+    # Define custom CSS to handle light and dark themes and bubble style
     custom_css = """
         <style>
             /* General card styles */
@@ -114,10 +113,10 @@ def create_basic_custom_markdown_card(text, image_url=None):
                 border-radius: 20px;
             }
 
-            /* Light theme: Text color white */
+            /* Force text color to black for light theme */
             @media (prefers-color-scheme: light) {
                 .card-content {
-                    color: white !important;
+                    color: black !important; /* Force black text for light theme */
                 }
             }
 
@@ -135,27 +134,25 @@ def create_basic_custom_markdown_card(text, image_url=None):
             }
         </style>
     """
-
+    
+    # Apply custom CSS styles to the card
     st.markdown(custom_css, unsafe_allow_html=True)
     
     text_lines = text.split('\n')
-
     formatted_text = '<br>'.join(text_lines)
     
     # Create the card
     st.markdown(
-        """
-        <div class="card" style="display: flex; align-items: center;">
+        f"""
+        <div class="card">
             <div style="flex: 1;">
                 <div class="card-content">
-                """
-        + formatted_text
-        + """
+                    {formatted_text}
                 </div>
             </div>
             """
         # Add the image if URL is provided
-        + (f'<img src="{image_url}" style="max-width:100%; border-radius: 5px; flex-shrink: 0; margin-left: 20px;">' if image_url else '')
+        + (f'<img src="{image_url}" style="max-width:100%; border-radius: 20px; flex-shrink: 0; margin-left: 20px;">' if image_url else '')
         + """
         </div>
         """,
