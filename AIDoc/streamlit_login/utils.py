@@ -171,7 +171,7 @@ def send_passwd_in_email(auth_token: str, username_forgot_passwd: str, email_for
     """
     Triggers an email to the user containing the randomly generated password.
     """
-    client = Courier(auth_token = auth_token)
+    client = Courier(authorization_token = "pk_prod_TSABQG9T12M5J7P5Q91W4CK2HN75")
 
     resp = client.send_message(
     message={
@@ -192,7 +192,7 @@ def send_doc_email(auth_token: str, email_doc: str, user_name: str,specialty: st
     """
     Triggers an email to the user containing the randomly generated password.
     """
-    client = Courier(auth_token = auth_token)
+    client = Courier(authorization_token = "pk_prod_TSABQG9T12M5J7P5Q91W4CK2HN75")
 
     resp = client.send_message(
     message={
