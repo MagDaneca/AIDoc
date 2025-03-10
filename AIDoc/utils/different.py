@@ -91,6 +91,42 @@ def create_custom_markdown_card(text, image_url=None):
 
 def create_basic_custom_markdown_card(text, image_url=None):
     # Apply custom CSS styles to the card
+
+    custom_css = """
+        <style>
+            /* General card styles */
+            .card {
+                display: flex;
+                align-items: center;
+                background-color: transparent; /* Transparent background */
+                padding: 15px;
+                border-radius: 10px;
+                box-shadow: none; /* Remove shadow if not needed */
+                margin-bottom: 10px;
+            }
+            
+            /* Text styling for different themes */
+            .card-content {
+                font-size: 16px;
+                padding: 10px;
+            }
+
+            /* Light theme: Text color white */
+            @media (prefers-color-scheme: light) {
+                .card-content {
+                    color: white !important;
+                }
+            }
+
+            /* Dark theme: Text color light */
+            @media (prefers-color-scheme: dark) {
+                .card-content {
+                    color: lightgray !important;  /* Light color for dark mode */
+                }
+            }
+        </style>
+    """
+
     st.markdown(custom_css, unsafe_allow_html=True)
     
     text_lines = text.split('\n')
