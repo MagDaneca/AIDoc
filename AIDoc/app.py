@@ -70,7 +70,7 @@ diabetes_model = pickle.load(open(rb'AIDoc/Trained models/diabetes_model_medassi
 liver_disease_model = pickle.load(open(rb'AIDoc/Trained models/liver_disease_model.sav', 'rb'))
 heart_disease_model = pickle.load(open(rb'AIDoc/Trained models/heart_disease_model.sav','rb'))
 
-__login__obj = __login__(auth_token = "pk_prod_CZ5DS4VHWB45N5PFDVPXTA9ASVSY", 
+__login__obj = __login__(auth_token = "pk_prod_TSABQG9T12M5J7P5Q91W4CK2HN75", 
                          
                     company_name = "AIDoc",
                     width = 200, height = 250, 
