@@ -20,6 +20,7 @@ from streamlit_folium import folium_static
 import tensorflow as tf
 import numpy as np
 from streamlit_modal import Modal
+import pathlib
 
 
 
@@ -50,6 +51,13 @@ def get_working_hours(username,day):
     return start_time, end_time
 
 
+def load_css(file_path):
+    with open(file_path) as f:
+        st.html(f"<style>{f.read()}</style>")
+
+css_path = pathlib_Path(r'C:\Users\MSI\Desktop\newdoc\AIDoc\AIDoc\styles.css')
+load_css(css_path)
+
 def init_session_state():
     if 'data' not in st.session_state:
         st.session_state.data = True
@@ -64,7 +72,6 @@ hide_streamlit_style = """
             </style>
             """
 st.markdown(hide_streamlit_style, unsafe_allow_html=True)
-
 
 conn = create_connection(db_path)
 cursor = conn.cursor()
